@@ -12,6 +12,7 @@
 		F298A02827DCF14F00946AFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02727DCF14F00946AFA /* ViewController.swift */; };
 		F298A02D27DCF15300946AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F298A02C27DCF15300946AFA /* Assets.xcassets */; };
 		F298A03027DCF15300946AFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */; };
+		F298A03C27DCFC0000946AFA /* GBVisualComponents in Frameworks */ = {isa = PBXBuildFile; productRef = F298A03B27DCFC0000946AFA /* GBVisualComponents */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		F298A02C27DCF15300946AFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F298A02F27DCF15300946AFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F298A03127DCF15300946AFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F298A03927DCFB8200946AFA /* GBVisualComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GBVisualComponents; path = ProjectPackages/GBVisualComponents; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +31,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F298A03C27DCFC0000946AFA /* GBVisualComponents in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -39,7 +42,9 @@
 			isa = PBXGroup;
 			children = (
 				F298A02227DCF14F00946AFA /* GithuBrowser */,
+				F298A03927DCFB8200946AFA /* GBVisualComponents */,
 				F298A02127DCF14F00946AFA /* Products */,
+				F298A03A27DCFC0000946AFA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -64,6 +69,13 @@
 			path = GithuBrowser;
 			sourceTree = "<group>";
 		};
+		F298A03A27DCFC0000946AFA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -80,6 +92,9 @@
 			dependencies = (
 			);
 			name = GithuBrowser;
+			packageProductDependencies = (
+				F298A03B27DCFC0000946AFA /* GBVisualComponents */,
+			);
 			productName = GithuBrowser;
 			productReference = F298A02027DCF14F00946AFA /* GithuBrowser.app */;
 			productType = "com.apple.product-type.application";
@@ -348,6 +363,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		F298A03B27DCFC0000946AFA /* GBVisualComponents */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GBVisualComponents;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = F298A01827DCF14F00946AFA /* Project object */;
 }
