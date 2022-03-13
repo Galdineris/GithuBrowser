@@ -22,6 +22,8 @@ public final class GBRepositoryAvatar: UIView {
         label.font = UIFont.preferredFont(forTextStyle: .headline)
         label.textColor = .systemTeal
         label.accessibilityIdentifier = "labelTitle"
+        label.adjustsFontSizeToFitWidth = false
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
     private let subtitleLabel: UILabel = {
@@ -29,6 +31,8 @@ public final class GBRepositoryAvatar: UIView {
         label.font = UIFont.preferredFont(forTextStyle: .subheadline)
         label.textColor = .systemGray
         label.accessibilityIdentifier = "labelSubtitle"
+        label.adjustsFontSizeToFitWidth = false
+        label.lineBreakMode = .byTruncatingTail
         return label
     }()
     private let labelsStackView: UIStackView = {

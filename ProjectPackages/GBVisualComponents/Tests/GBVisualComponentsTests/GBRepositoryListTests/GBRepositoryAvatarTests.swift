@@ -21,13 +21,13 @@ final class GBRepositoryAvatarTests: XCTestCase {
 
 // MARK: #Init
 
-    func test_init_withVertical_shouldSetAxisVertical() {
+    func test_init_withVertical_shouldSetAxisVertical() throws {
         let stackView = sut.viewWith(accessibilityIdentifier: "stackViewContent") as? UIStackView
         XCTAssertNotNil(stackView)
         XCTAssertEqual(stackView?.axis, .vertical)
     }
 
-    func test_init_withHorizontal_shouldSetAxisHorizontal() {
+    func test_init_withHorizontal_shouldSetAxisHorizontal() throws {
         sut = GBRepositoryAvatar(orientation: .horizontal)
 
         let stackView = sut.viewWith(accessibilityIdentifier: "stackViewContent") as? UIStackView
@@ -37,7 +37,7 @@ final class GBRepositoryAvatarTests: XCTestCase {
 
 // MARK: #Show
 
-    func test_show_withEmptyValues_shouldHideElements() {
+    func test_show_withEmptyValues_shouldHideElements() throws {
         let model = GBAvatarModel(username: "")
         sut.show(model)
 
@@ -49,7 +49,7 @@ final class GBRepositoryAvatarTests: XCTestCase {
         XCTAssertTrue(subtitleLabel?.isHidden ?? false)
     }
 
-    func test_show_withImage_shouldShowImage() {
+    func test_show_withImage_shouldShowImage() throws {
         let model = GBAvatarModel(username: "", image: .add)
         sut.show(model)
 
@@ -59,7 +59,7 @@ final class GBRepositoryAvatarTests: XCTestCase {
         XCTAssertEqual(imageView?.image, .add)
     }
 
-    func test_show_withRealName_shouldShowSubtitle() {
+    func test_show_withRealName_shouldShowSubtitle() throws {
         let model = GBAvatarModel(username: "", realName: "realName")
         sut.show(model)
 
