@@ -29,7 +29,7 @@ public final class GBIconLabel: UIView {
     private let label: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont.preferredFont(forTextStyle: .title1, compatibleWith: .init(legibilityWeight: .bold))
+        label.font = UIFont.preferredFont(forTextStyle: .title3, compatibleWith: .init(legibilityWeight: .bold))
         label.adjustsFontSizeToFitWidth = false
         label.lineBreakMode = .byTruncatingHead
         label.accessibilityIdentifier = "label"
@@ -65,15 +65,15 @@ public final class GBIconLabel: UIView {
     }
 
     private func configureConstraints() {
+        let labelFontSize = label.font.pointSize
         NSLayoutConstraint.activate([
             iconView.heightAnchor.constraint(equalTo: iconView.widthAnchor),
-            iconView.heightAnchor.constraint(equalTo: label.heightAnchor),
+            iconView.heightAnchor.constraint(equalToConstant: labelFontSize),
             iconView.leftAnchor.constraint(equalTo: leftAnchor),
 
             label.leftAnchor.constraint(equalTo: iconView.rightAnchor, constant: 4),
-            label.topAnchor.constraint(equalTo: topAnchor),
             label.rightAnchor.constraint(equalTo: rightAnchor),
-            label.bottomAnchor.constraint(equalTo: bottomAnchor)
+            label.centerYAnchor.constraint(equalTo: iconView.centerYAnchor)
         ])
     }
 }

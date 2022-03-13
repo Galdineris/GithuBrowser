@@ -40,7 +40,7 @@ public final class GBRepositoryAvatar: UIView {
         stack.axis = .vertical
         stack.alignment = .center
         stack.distribution = .fill
-        stack.spacing = 12
+        stack.spacing = 4
         return stack
     }()
     private lazy var contentStackView: UIStackView = {
@@ -48,7 +48,7 @@ public final class GBRepositoryAvatar: UIView {
         stack.axis = orientation == .vertical ? .vertical : .horizontal
         stack.alignment = .center
         stack.distribution = .fill
-        stack.spacing = 12
+        stack.spacing = 8
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.accessibilityIdentifier = "stackViewContent"
         return stack
@@ -101,8 +101,8 @@ public final class GBRepositoryAvatar: UIView {
     private func configureConstraints() {
         let imageViewSizeConstraint =
         orientation == .vertical
-        ? imageView.widthAnchor.constraint(equalTo: contentStackView.widthAnchor, multiplier: 0.5)
-        : imageView.heightAnchor.constraint(equalTo: contentStackView.heightAnchor, multiplier: 0.5)
+        ? imageView.widthAnchor.constraint(equalTo: labelsStackView.widthAnchor, multiplier: 0.5)
+        : imageView.heightAnchor.constraint(equalTo: labelsStackView.heightAnchor, multiplier: 0.5)
 
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(equalTo: self.topAnchor),
