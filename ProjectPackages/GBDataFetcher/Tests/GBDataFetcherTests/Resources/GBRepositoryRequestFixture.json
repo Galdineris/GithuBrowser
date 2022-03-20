@@ -1,0 +1,14 @@
+{
+  "items": [
+    {
+      "name": "name",
+      "owner": {
+        "login": "username",
+        "avatar_url": "avatarPath"
+      },
+      "description": "description",
+      "stargazers_count": 10,
+      "forks_count": 20
+    }
+  ]
+}

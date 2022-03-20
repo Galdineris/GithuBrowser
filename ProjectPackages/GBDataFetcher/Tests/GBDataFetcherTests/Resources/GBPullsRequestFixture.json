@@ -1,0 +1,12 @@
+[
+  {
+    "html_url": "htmlUrl",
+    "state": "open",
+    "title": "title",
+    "user": {
+      "login": "username",
+      "avatar_url": "avatarPath"
+    },
+    "body": "body"
+  }
+]

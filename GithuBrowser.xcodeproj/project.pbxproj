@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F298A02427DCF14F00946AFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02327DCF14F00946AFA /* AppDelegate.swift */; };
-		F298A02627DCF14F00946AFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02527DCF14F00946AFA /* SceneDelegate.swift */; };
-		F298A02827DCF14F00946AFA /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02727DCF14F00946AFA /* ViewController.swift */; };
 		F298A02D27DCF15300946AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F298A02C27DCF15300946AFA /* Assets.xcassets */; };
 		F298A03027DCF15300946AFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */; };
-		F298A03C27DCFC0000946AFA /* GBVisualComponents in Frameworks */ = {isa = PBXBuildFile; productRef = F298A03B27DCFC0000946AFA /* GBVisualComponents */; };
+		F2FE8EA927E7AA670071718F /* GBVisualComponents in Frameworks */ = {isa = PBXBuildFile; productRef = F2FE8EA827E7AA670071718F /* GBVisualComponents */; };
+		F2FE8EAD27E7B27C0071718F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02327DCF14F00946AFA /* AppDelegate.swift */; };
+		F2FE8EAE27E7B27C0071718F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02527DCF14F00946AFA /* SceneDelegate.swift */; };
+		F2FE8EB227E7D31B0071718F /* GBDataFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = F2FE8EB127E7D31B0071718F /* GBDataFetcher */; settings = {ATTRIBUTES = (Required, ); }; };
+		F2FE8EB327E7D62A0071718F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02727DCF14F00946AFA /* ViewController.swift */; };
+		F2FE8EB527E7D63F0071718F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FE8EB427E7D63F0071718F /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		F2FE8EB727E7DBF60071718F /* GBRepositoryListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE8EB627E7DBF60071718F /* GBRepositoryListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,7 +26,10 @@
 		F298A02C27DCF15300946AFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F298A02F27DCF15300946AFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F298A03127DCF15300946AFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F298A03927DCFB8200946AFA /* GBVisualComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GBVisualComponents; path = ProjectPackages/GBVisualComponents; sourceTree = "<group>"; };
+		F2FE8EA527E7AA560071718F /* GBVisualComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GBVisualComponents; path = ProjectPackages/GBVisualComponents; sourceTree = "<group>"; };
+		F2FE8EB027E7D1FF0071718F /* GBDataFetcher */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GBDataFetcher; path = ProjectPackages/GBDataFetcher; sourceTree = "<group>"; };
+		F2FE8EB427E7D63F0071718F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		F2FE8EB627E7DBF60071718F /* GBRepositoryListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBRepositoryListPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,7 +37,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F298A03C27DCFC0000946AFA /* GBVisualComponents in Frameworks */,
+				F2FE8EB527E7D63F0071718F /* XCTest.framework in Frameworks */,
+				F2FE8EA927E7AA670071718F /* GBVisualComponents in Frameworks */,
+				F2FE8EB227E7D31B0071718F /* GBDataFetcher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -41,8 +49,8 @@
 		F298A01727DCF14F00946AFA = {
 			isa = PBXGroup;
 			children = (
+				F2FE8EA327E7AA3B0071718F /* Packages */,
 				F298A02227DCF14F00946AFA /* GithuBrowser */,
-				F298A03927DCFB8200946AFA /* GBVisualComponents */,
 				F298A02127DCF14F00946AFA /* Products */,
 				F298A03A27DCFC0000946AFA /* Frameworks */,
 			);
@@ -62,6 +70,7 @@
 				F298A02327DCF14F00946AFA /* AppDelegate.swift */,
 				F298A02527DCF14F00946AFA /* SceneDelegate.swift */,
 				F298A02727DCF14F00946AFA /* ViewController.swift */,
+				F2FE8EB627E7DBF60071718F /* GBRepositoryListPresenter.swift */,
 				F298A02C27DCF15300946AFA /* Assets.xcassets */,
 				F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */,
 				F298A03127DCF15300946AFA /* Info.plist */,
@@ -72,8 +81,18 @@
 		F298A03A27DCFC0000946AFA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F2FE8EB427E7D63F0071718F /* XCTest.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F2FE8EA327E7AA3B0071718F /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				F2FE8EA527E7AA560071718F /* GBVisualComponents */,
+				F2FE8EB027E7D1FF0071718F /* GBDataFetcher */,
+			);
+			name = Packages;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -93,7 +112,8 @@
 			);
 			name = GithuBrowser;
 			packageProductDependencies = (
-				F298A03B27DCFC0000946AFA /* GBVisualComponents */,
+				F2FE8EA827E7AA670071718F /* GBVisualComponents */,
+				F2FE8EB127E7D31B0071718F /* GBDataFetcher */,
 			);
 			productName = GithuBrowser;
 			productReference = F298A02027DCF14F00946AFA /* GithuBrowser.app */;
@@ -149,9 +169,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F298A02827DCF14F00946AFA /* ViewController.swift in Sources */,
-				F298A02427DCF14F00946AFA /* AppDelegate.swift in Sources */,
-				F298A02627DCF14F00946AFA /* SceneDelegate.swift in Sources */,
+				F2FE8EB327E7D62A0071718F /* ViewController.swift in Sources */,
+				F2FE8EAD27E7B27C0071718F /* AppDelegate.swift in Sources */,
+				F2FE8EAE27E7B27C0071718F /* SceneDelegate.swift in Sources */,
+				F2FE8EB727E7DBF60071718F /* GBRepositoryListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -365,9 +386,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F298A03B27DCFC0000946AFA /* GBVisualComponents */ = {
+		F2FE8EA827E7AA670071718F /* GBVisualComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GBVisualComponents;
+		};
+		F2FE8EB127E7D31B0071718F /* GBDataFetcher */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GBDataFetcher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
