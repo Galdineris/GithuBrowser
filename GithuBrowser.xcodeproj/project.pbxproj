@@ -15,7 +15,6 @@
 		F2FE8EB227E7D31B0071718F /* GBDataFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = F2FE8EB127E7D31B0071718F /* GBDataFetcher */; settings = {ATTRIBUTES = (Required, ); }; };
 		F2FE8EB327E7D62A0071718F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02727DCF14F00946AFA /* ViewController.swift */; };
 		F2FE8EB527E7D63F0071718F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FE8EB427E7D63F0071718F /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		F2FE8EB727E7DBF60071718F /* GBRepositoryListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2FE8EB627E7DBF60071718F /* GBRepositoryListPresenter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		F2FE8EA527E7AA560071718F /* GBVisualComponents */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GBVisualComponents; path = ProjectPackages/GBVisualComponents; sourceTree = "<group>"; };
 		F2FE8EB027E7D1FF0071718F /* GBDataFetcher */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GBDataFetcher; path = ProjectPackages/GBDataFetcher; sourceTree = "<group>"; };
 		F2FE8EB427E7D63F0071718F /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
-		F2FE8EB627E7DBF60071718F /* GBRepositoryListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBRepositoryListPresenter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +68,6 @@
 				F298A02327DCF14F00946AFA /* AppDelegate.swift */,
 				F298A02527DCF14F00946AFA /* SceneDelegate.swift */,
 				F298A02727DCF14F00946AFA /* ViewController.swift */,
-				F2FE8EB627E7DBF60071718F /* GBRepositoryListPresenter.swift */,
 				F298A02C27DCF15300946AFA /* Assets.xcassets */,
 				F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */,
 				F298A03127DCF15300946AFA /* Info.plist */,
@@ -172,7 +169,6 @@
 				F2FE8EB327E7D62A0071718F /* ViewController.swift in Sources */,
 				F2FE8EAD27E7B27C0071718F /* AppDelegate.swift in Sources */,
 				F2FE8EAE27E7B27C0071718F /* SceneDelegate.swift in Sources */,
-				F2FE8EB727E7DBF60071718F /* GBRepositoryListPresenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -12,17 +12,20 @@ public struct GBRepositoryListCellModel {
     var description: String
     var forks: Int
     var stars: Int
-    var avatar: GBAvatarModel
+    var avatarName: String
+    var avatarImagePath: String?
 
     public init(title: String,
                 description: String,
                 forks: Int,
                 stars: Int,
-                avatar: GBAvatarModel) {
+                avatarName: String,
+                avatarImagePath: String) {
         self.title = title
         self.description = description
         self.forks = forks
         self.stars = stars
-        self.avatar = avatar
+        self.avatarName = avatarName
+        self.avatarImagePath = avatarImagePath
     }
 }

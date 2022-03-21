@@ -6,11 +6,11 @@
 //
 
 public struct GBRepositoryDAO: Decodable, Equatable {
-    let name: String
-    let owner: GBUserDAO
-    let description: String
-    let stars: Int
-    let forks: Int
+    public let name: String
+    public let owner: GBUserDAO
+    public let description: String?
+    public let stars: Int
+    public let forks: Int
 
     enum CodingKeys: String, CodingKey {
         case name

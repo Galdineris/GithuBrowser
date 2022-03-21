@@ -26,23 +26,6 @@ public final class GBRepositoryAvatar: UIView {
         label.lineBreakMode = .byTruncatingTail
         return label
     }()
-    private let subtitleLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.preferredFont(forTextStyle: .subheadline)
-        label.textColor = .systemGray
-        label.accessibilityIdentifier = "labelSubtitle"
-        label.adjustsFontSizeToFitWidth = false
-        label.lineBreakMode = .byTruncatingTail
-        return label
-    }()
-    private let labelsStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .vertical
-        stack.alignment = .center
-        stack.distribution = .fill
-        stack.spacing = 4
-        return stack
-    }()
     private lazy var contentStackView: UIStackView = {
         let stack = UIStackView()
         stack.axis = orientation == .vertical ? .vertical : .horizontal
@@ -68,14 +51,11 @@ public final class GBRepositoryAvatar: UIView {
 
     public override func layoutSubviews() {
         super.layoutSubviews()
-        imageView.layer.cornerRadius = contentStackView.frame.width / 4
+        imageView.layer.cornerRadius = 25
     }
 
     public func show(_ model: GBAvatarModel) {
         titleLabel.text = model.username
-
-        subtitleLabel.isHidden = model.realName == nil
-        subtitleLabel.text = model.realName
 
         imageView.isHidden = model.image == nil
         imageView.image = model.image
@@ -88,21 +68,17 @@ public final class GBRepositoryAvatar: UIView {
     }
 
     private func buildViewHierarchy() {
-        labelsStackView.addArrangedSubview(titleLabel)
-        labelsStackView.addArrangedSubview(subtitleLabel)
-
+        contentStackView.addArrangedSubview(UIView())
         contentStackView.addArrangedSubview(imageView)
-        contentStackView.addArrangedSubview(labelsStackView)
+        contentStackView.addArrangedSubview(titleLabel)
         contentStackView.addArrangedSubview(UIView())
 
         addSubview(contentStackView)
     }
 
     private func configureConstraints() {
-        let imageViewSizeConstraint =
-        orientation == .vertical
-        ? imageView.widthAnchor.constraint(equalTo: labelsStackView.widthAnchor, multiplier: 0.5)
-        : imageView.heightAnchor.constraint(equalTo: labelsStackView.heightAnchor, multiplier: 0.5)
+        let imageViewSizeConstraint = imageView.widthAnchor
+            .constraint(equalToConstant: 50)
 
         NSLayoutConstraint.activate([
             contentStackView.topAnchor.constraint(equalTo: self.topAnchor),

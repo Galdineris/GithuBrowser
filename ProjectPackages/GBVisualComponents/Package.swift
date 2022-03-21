@@ -12,6 +12,8 @@ let package = Package(
             targets: ["GBVisualComponents"])
     ],
     dependencies: [
+        .package(name: "GBDataFetcher",
+                 path: "../GBDataFetcher")
     ],
     targets: [
         .target(

@@ -6,8 +6,8 @@
 //
 
 public struct GBUserDAO: Decodable, Equatable {
-    let username: String
-    let avatarPath: String
+    public let username: String
+    public let avatarPath: String
 
     enum CodingKeys: String, CodingKey {
         case username = "login"

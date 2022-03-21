@@ -51,7 +51,8 @@ extension GBServiceType {
                     responseBlock(.failure(.apiError(apiError)))
                 }
                 guard isHttpSuccess(response) else {
-                    return responseBlock(.failure(.unexpectedStatusCode))
+                    let code = (response as? HTTPURLResponse)?.statusCode
+                    return responseBlock(.failure(.unexpectedStatusCode(code: code ?? 400)))
                 }
                 guard let data = data else {
                     return responseBlock(.failure(.noDataReceived))

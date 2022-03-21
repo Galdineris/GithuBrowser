@@ -10,6 +10,8 @@ import UIKit
 public final class GBRepositoryListCell: UITableViewCell {
     static let reuseIdentifier = "GBRepositoryListCell"
 
+    let imageService: GBCellImageService = GBCellImageService()
+
     private let avatarView: GBRepositoryAvatar = {
         let avatar = GBRepositoryAvatar(orientation: .vertical)
         avatar.accessibilityIdentifier = "viewAvatar"
@@ -54,7 +56,7 @@ public final class GBRepositoryListCell: UITableViewCell {
         label.accessibilityIdentifier = "labelDescription"
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textColor = .systemGray
-        label.numberOfLines = 5
+        label.numberOfLines = 3
         return label
     }()
     private let labelsStackView: UIStackView = {
@@ -62,7 +64,7 @@ public final class GBRepositoryListCell: UITableViewCell {
         stack.translatesAutoresizingMaskIntoConstraints = false
         stack.axis = .vertical
         stack.alignment = .leading
-        stack.distribution = .fillEqually
+        stack.distribution = .fill
         return stack
     }()
 
@@ -70,10 +72,27 @@ public final class GBRepositoryListCell: UITableViewCell {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
 
-        forksLabel.text = "\(model.forks)"
-        starsLabel.text = "\(model.stars)"
+        forksLabel.text = model.forks > 0 ? "\(model.forks)" : "No Forks"
+        starsLabel.text = model.stars > 0 ? "\(model.stars)" : "No Stars"
 
-        avatarView.show(model.avatar)
+        avatarView.show(GBAvatarModel(username: model.avatarName))
+
+        imageService.fetchImage(for: model.avatarImagePath ?? "") { [weak self, model] image in
+            DispatchQueue.main.async {
+                self?.avatarView.show(GBAvatarModel(username: model.avatarName, image: image))
+            }
+        }
+    }
+
+    public func updateAvatar(with model: GBAvatarModel) {
+        avatarView.show(model)
+        setNeedsLayout()
+    }
+
+    public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: .default, reuseIdentifier: GBRepositoryListCell.reuseIdentifier)
+        accessoryType = .disclosureIndicator
+        setupView()
     }
 
     public init() {
@@ -88,6 +107,18 @@ public final class GBRepositoryListCell: UITableViewCell {
         return nil
     }
 
+    public override func prepareForReuse() {
+        super.prepareForReuse()
+        let avatarModel = GBAvatarModel(username: "",
+                                        image: nil)
+        titleLabel.text = nil
+        descriptionLabel.text = nil
+        forksLabel.text = ""
+        starsLabel.text = ""
+        imageService.dataTask = nil
+        avatarView.show(avatarModel)
+    }
+
     private func setupView() {
         translatesAutoresizingMaskIntoConstraints = false
         buildViewHierarchy()
@@ -95,11 +126,12 @@ public final class GBRepositoryListCell: UITableViewCell {
     }
 
     private func buildViewHierarchy() {
+        labelsStackView.addArrangedSubview(UIView())
         labelsStackView.addArrangedSubview(titleLabel)
         labelsStackView.addArrangedSubview(descriptionLabel)
 
-        metricsStackView.addArrangedSubview(forksLabel)
         metricsStackView.addArrangedSubview(starsLabel)
+        metricsStackView.addArrangedSubview(forksLabel)
         metricsStackView.addArrangedSubview(UIView())
 
         contentView.addSubview(labelsStackView)
@@ -119,6 +151,7 @@ public final class GBRepositoryListCell: UITableViewCell {
             metricsStackView.leftAnchor.constraint(equalTo: contraintGuide.leftAnchor),
             metricsStackView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
             metricsStackView.rightAnchor.constraint(equalTo: avatarView.leftAnchor),
+            metricsStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
 
             avatarView.topAnchor.constraint(equalTo: contraintGuide.topAnchor),
             avatarView.rightAnchor.constraint(equalTo: contraintGuide.rightAnchor),
