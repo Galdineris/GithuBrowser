@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F28820F027E92D2F006EFD40 /* GBCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28820EF27E92D2E006EFD40 /* GBCoordinator.swift */; };
 		F298A02D27DCF15300946AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F298A02C27DCF15300946AFA /* Assets.xcassets */; };
 		F298A03027DCF15300946AFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */; };
 		F2FE8EA927E7AA670071718F /* GBVisualComponents in Frameworks */ = {isa = PBXBuildFile; productRef = F2FE8EA827E7AA670071718F /* GBVisualComponents */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F28820EF27E92D2E006EFD40 /* GBCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBCoordinator.swift; sourceTree = "<group>"; };
 		F298A02027DCF14F00946AFA /* GithuBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithuBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F298A02327DCF14F00946AFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F298A02527DCF14F00946AFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -68,6 +70,7 @@
 				F298A02327DCF14F00946AFA /* AppDelegate.swift */,
 				F298A02527DCF14F00946AFA /* SceneDelegate.swift */,
 				F298A02727DCF14F00946AFA /* ViewController.swift */,
+				F28820EF27E92D2E006EFD40 /* GBCoordinator.swift */,
 				F298A02C27DCF15300946AFA /* Assets.xcassets */,
 				F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */,
 				F298A03127DCF15300946AFA /* Info.plist */,
@@ -169,6 +172,7 @@
 				F2FE8EB327E7D62A0071718F /* ViewController.swift in Sources */,
 				F2FE8EAD27E7B27C0071718F /* AppDelegate.swift in Sources */,
 				F2FE8EAE27E7B27C0071718F /* SceneDelegate.swift in Sources */,
+				F28820F027E92D2F006EFD40 /* GBCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

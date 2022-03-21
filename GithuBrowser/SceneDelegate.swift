@@ -6,16 +6,24 @@
 //
 
 import UIKit
+import GBVisualComponents
+import GBDataFetcher
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
+    var coordinator: GBCoordinator?
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let scene = (scene as? UIWindowScene) else { fatalError("Main Scene not found.") }
+        window = UIWindow(windowScene: scene)
 
-        let viewController = ViewController()
-        window?.rootViewController = viewController
+
+        let navigationController = UINavigationController()
+        coordinator = GBCoordinator(navigationController: navigationController)
+        navigationController.navigationBar.prefersLargeTitles = true
+        window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
+        coordinator?.start()
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }
