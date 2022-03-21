@@ -13,6 +13,13 @@ public final class GBPullsListViewController: UIViewController {
     public weak var delegate: GBRepositoryListControllerDelegate?
     private var presenter: GBPullsListPresenter
 
+    private let listLoadingIndicator: UIActivityIndicatorView = {
+        let view = UIActivityIndicatorView(frame: .zero)
+        view.style = .large
+        view.hidesWhenStopped = true
+        return view
+    }()
+
     private lazy var repositoryList: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,6 +30,7 @@ public final class GBPullsListViewController: UIViewController {
                            forCellReuseIdentifier: GBPullsListCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableFooterView = listLoadingIndicator
         return tableView
     }()
 
@@ -46,12 +54,9 @@ public final class GBPullsListViewController: UIViewController {
     }
 
     private func setupView() {
+        view.backgroundColor = .white
         buildViewHierarchy()
         configureConstraints()
-
-        let activityIndicator = UIActivityIndicatorView(frame: .zero)
-        activityIndicator.startAnimating()
-        repositoryList.tableFooterView = activityIndicator
     }
 
     private func buildViewHierarchy() {
@@ -59,22 +64,34 @@ public final class GBPullsListViewController: UIViewController {
     }
 
     private func configureConstraints() {
+        let contraintGuides = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            repositoryList.topAnchor.constraint(equalTo: view.topAnchor),
-            repositoryList.rightAnchor.constraint(equalTo: view.rightAnchor),
-            repositoryList.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            repositoryList.leftAnchor.constraint(equalTo: view.leftAnchor)
+            repositoryList.topAnchor.constraint(equalTo: contraintGuides.topAnchor),
+            repositoryList.rightAnchor.constraint(equalTo: contraintGuides.rightAnchor),
+            repositoryList.bottomAnchor.constraint(equalTo: contraintGuides.bottomAnchor),
+            repositoryList.leftAnchor.constraint(equalTo: contraintGuides.leftAnchor)
         ])
     }
 }
 
 extension GBPullsListViewController: GBRepositoryListControllerType {
+    public func openPullsList(in repo: String, of user: String) { }
+
     public func reloadData() {
         repositoryList.reloadData()
+        setLoading(to: false)
     }
 
-    public func navigateTo() {
-        delegate?.navigateTo()
+    public func openPullsRequest(in path: String) {
+        delegate?.openPullRequest(path)
+    }
+
+    public func setLoading(to isLoading: Bool) {
+        if isLoading {
+            listLoadingIndicator.startAnimating()
+        } else {
+            listLoadingIndicator.stopAnimating()
+        }
     }
 }
 

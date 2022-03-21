@@ -7,16 +7,14 @@
 
 import Foundation
 import GBDataFetcher
+
 public struct GBPullsListModel {
     var repo: String
-    var user: GBUserDAO
-    var pullPath: String
+    var username: String
 
     public init(repo: String,
-                user: GBUserDAO,
-                pullPath: String) {
+                username: String) {
         self.repo = repo
-        self.user = user
-        self.pullPath = pullPath
+        self.username = username
     }
 }

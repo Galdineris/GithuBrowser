@@ -23,11 +23,22 @@ public final class GBPullsListPresenter {
     private var lastPageFetched: Int = 1
 
     public func fetchData() {
-        service.getPulls(from: model.user,
+        guard lastPageFetched > 0 else {
+            return
+        }
+        controller?.setLoading(to: true)
+        service.getPulls(of: model.repo,
+                         user: model.username,
                          for: lastPageFetched) { [weak self] result in
             switch result {
             case .success(let pulls):
-
+                guard !pulls.isEmpty else {
+                    self?.lastPageFetched = -1
+                    DispatchQueue.main.async {
+                        self?.controller?.setLoading(to: false)
+                    }
+                    return
+                }
                 self?.models.append(contentsOf: GBPullsListAdapter.adapt(pulls))
                 self?.lastPageFetched += 1
                 DispatchQueue.main.async {
@@ -41,6 +52,8 @@ public final class GBPullsListPresenter {
     }
 
     public func selectCellAt(index: Int) {
-        controller?.navigateTo()
+        guard index < models.count else { return }
+        let pullModel = models[index]
+        controller?.openPullsRequest(in: pullModel.pullPath)
     }
 }

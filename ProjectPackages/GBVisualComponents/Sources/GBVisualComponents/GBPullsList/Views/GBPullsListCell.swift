@@ -14,7 +14,7 @@ public final class GBPullsListCell: UITableViewCell {
     let imageService: GBCellImageService = GBCellImageService()
 
     private let avatarView: GBRepositoryAvatar = {
-        let avatar = GBRepositoryAvatar(orientation: .horizontal)
+        let avatar = GBRepositoryAvatar(orientation: .vertical)
         avatar.accessibilityIdentifier = "viewAvatar"
         return avatar
     }()
@@ -33,7 +33,7 @@ public final class GBPullsListCell: UITableViewCell {
         label.accessibilityIdentifier = "labelDescription"
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.textColor = .systemGray
-        label.numberOfLines = 3
+        label.numberOfLines = 5
         return label
     }()
     private let labelsStackView: UIStackView = {
@@ -92,13 +92,11 @@ public final class GBPullsListCell: UITableViewCell {
     }
 
     private func setupView() {
-        translatesAutoresizingMaskIntoConstraints = false
         buildViewHierarchy()
         configureConstraints()
     }
 
     private func buildViewHierarchy() {
-        labelsStackView.addArrangedSubview(UIView())
         labelsStackView.addArrangedSubview(titleLabel)
         labelsStackView.addArrangedSubview(descriptionLabel)
 
@@ -111,12 +109,14 @@ public final class GBPullsListCell: UITableViewCell {
         NSLayoutConstraint.activate([
             labelsStackView.topAnchor.constraint(equalTo: contraintGuide.topAnchor),
             labelsStackView.leftAnchor.constraint(equalTo: contraintGuide.leftAnchor),
+            labelsStackView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
             labelsStackView.rightAnchor.constraint(equalTo: avatarView.leftAnchor),
-            labelsStackView.bottomAnchor.constraint(equalTo: avatarView.topAnchor),
 
             avatarView.rightAnchor.constraint(equalTo: contraintGuide.rightAnchor),
             avatarView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
-            avatarView.widthAnchor.constraint(equalTo: contraintGuide.widthAnchor)
+            avatarView.rightAnchor.constraint(equalTo: contraintGuide.rightAnchor),
+            avatarView.widthAnchor.constraint(equalTo: contraintGuide.widthAnchor,
+                                              multiplier: 0.2)
         ])
     }
 }
