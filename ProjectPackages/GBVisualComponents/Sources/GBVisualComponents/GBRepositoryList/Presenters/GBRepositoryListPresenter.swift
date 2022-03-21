@@ -35,6 +35,8 @@ public final class GBRepositoryListPresenter: GBRepositoryListPresenterType {
     }
 
     public func selectCellAt(index: Int) {
-        controller?.navigateTo()
+        guard index < models.count else { return }
+        let repoModel = models[index]
+        controller?.openPullsList(in: repoModel.title, of: repoModel.avatarName)
     }
 }

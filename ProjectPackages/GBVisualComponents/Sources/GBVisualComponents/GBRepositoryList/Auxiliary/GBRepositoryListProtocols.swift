@@ -15,10 +15,13 @@ public protocol GBRepositoryListPresenterType {
 }
 
 public protocol GBRepositoryListControllerDelegate: AnyObject {
-    func navigateTo()
+    func openPullsList(repo: String, username: String)
+    func openPullRequest(_ path: String)
 }
 
 public protocol GBRepositoryListControllerType: UIViewController {
     func reloadData()
-    func navigateTo()
+    func openPullsList(in repo: String, of user: String)
+    func openPullsRequest(in path: String)
+    func setLoading(to isLoading: Bool)
 }

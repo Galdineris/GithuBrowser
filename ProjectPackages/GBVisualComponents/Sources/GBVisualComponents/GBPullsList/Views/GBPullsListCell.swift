@@ -1,45 +1,22 @@
 //
-//  GBRepositoryListCell.swift
+//  File.swift
 //  
 //
-//  Created by Rafael Galdino on 13/03/22.
+//  Created by Rafael Galdino on 21/03/22.
 //
 
+import Foundation
 import UIKit
 
-public final class GBRepositoryListCell: UITableViewCell {
-    static let reuseIdentifier = "GBRepositoryListCell"
+public final class GBPullsListCell: UITableViewCell {
+    static let reuseIdentifier = "GBPullsListCell"
 
     let imageService: GBCellImageService = GBCellImageService()
 
     private let avatarView: GBRepositoryAvatar = {
-        let avatar = GBRepositoryAvatar(orientation: .vertical)
+        let avatar = GBRepositoryAvatar(orientation: .horizontal)
         avatar.accessibilityIdentifier = "viewAvatar"
         return avatar
-    }()
-
-    private let forksLabel: GBIconLabel = {
-        let label = GBIconLabel()
-        label.icon = UIImage(named: "fork", in: Bundle.module, with: nil)
-        label.tintColor = .systemOrange
-        label.accessibilityIdentifier = "labelForks"
-        return label
-    }()
-    private let starsLabel: GBIconLabel = {
-        let label = GBIconLabel()
-        label.icon = UIImage(systemName: "star.fill")
-        label.tintColor = .systemOrange
-        label.accessibilityIdentifier = "labelStars"
-        return label
-    }()
-    private let metricsStackView: UIStackView = {
-        let stack = UIStackView()
-        stack.translatesAutoresizingMaskIntoConstraints = false
-        stack.axis = .horizontal
-        stack.alignment = .top
-        stack.distribution = .fill
-        stack.spacing = 12
-        return stack
     }()
 
     private let titleLabel: UILabel = {
@@ -68,12 +45,9 @@ public final class GBRepositoryListCell: UITableViewCell {
         return stack
     }()
 
-    public func show(_ model: GBRepositoryListCellModel) {
+    public func show(_ model: GBPullsListCellModel) {
         titleLabel.text = model.title
         descriptionLabel.text = model.description
-
-        forksLabel.text = model.forks > 0 ? "\(model.forks)" : "No Forks"
-        starsLabel.text = model.stars > 0 ? "\(model.stars)" : "No Stars"
 
         avatarView.show(GBAvatarModel(username: model.avatarName))
 
@@ -113,13 +87,12 @@ public final class GBRepositoryListCell: UITableViewCell {
                                         image: nil)
         titleLabel.text = nil
         descriptionLabel.text = nil
-        forksLabel.text = ""
-        starsLabel.text = ""
         imageService.dataTask = nil
         avatarView.show(avatarModel)
     }
 
     private func setupView() {
+        translatesAutoresizingMaskIntoConstraints = false
         buildViewHierarchy()
         configureConstraints()
     }
@@ -129,12 +102,7 @@ public final class GBRepositoryListCell: UITableViewCell {
         labelsStackView.addArrangedSubview(titleLabel)
         labelsStackView.addArrangedSubview(descriptionLabel)
 
-        metricsStackView.addArrangedSubview(starsLabel)
-        metricsStackView.addArrangedSubview(forksLabel)
-        metricsStackView.addArrangedSubview(UIView())
-
         contentView.addSubview(labelsStackView)
-        contentView.addSubview(metricsStackView)
         contentView.addSubview(avatarView)
     }
 
@@ -144,18 +112,11 @@ public final class GBRepositoryListCell: UITableViewCell {
             labelsStackView.topAnchor.constraint(equalTo: contraintGuide.topAnchor),
             labelsStackView.leftAnchor.constraint(equalTo: contraintGuide.leftAnchor),
             labelsStackView.rightAnchor.constraint(equalTo: avatarView.leftAnchor),
-            labelsStackView.bottomAnchor.constraint(equalTo: metricsStackView.topAnchor,
-                                                    constant: 0),
+            labelsStackView.bottomAnchor.constraint(equalTo: avatarView.topAnchor),
 
-            metricsStackView.leftAnchor.constraint(equalTo: contraintGuide.leftAnchor),
-            metricsStackView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
-            metricsStackView.rightAnchor.constraint(equalTo: avatarView.leftAnchor),
-            metricsStackView.heightAnchor.constraint(greaterThanOrEqualToConstant: 40),
-
-            avatarView.topAnchor.constraint(equalTo: contraintGuide.topAnchor),
             avatarView.rightAnchor.constraint(equalTo: contraintGuide.rightAnchor),
             avatarView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
-            avatarView.widthAnchor.constraint(greaterThanOrEqualToConstant: 120)
+            avatarView.widthAnchor.constraint(equalTo: contraintGuide.widthAnchor)
         ])
     }
 }
