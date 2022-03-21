@@ -40,12 +40,13 @@ public struct GBService: GBServiceType {
     }
 
     @discardableResult
-    public func getPulls(from user: GBUserDAO,
+    public func getPulls(of repository: String,
+                         user: String,
                          for page: Int,
                          pageSize: Int = 10,
                          completion: @escaping (Result<[GBPullRequestDAO], Error>) -> Void) -> URLSessionDataTask? {
-        let service = GBPullsRequest(user: user.username,
-                                     repository: user.avatarPath,
+        let service = GBPullsRequest(user: user,
+                                     repository: repository,
                                      page: page,
                                      perPage: pageSize)
         return request(service, session: session) { result in

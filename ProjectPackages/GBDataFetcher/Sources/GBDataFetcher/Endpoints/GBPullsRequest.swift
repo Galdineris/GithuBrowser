@@ -15,8 +15,6 @@ struct GBPullsRequest: GBGetRequestType {
     var path: String { "/repos/\(user)/\(repository)/pulls" }
     var queryItems: [String: String] {
         [
-            "q":"language:Swift",
-            "sort":"stars",
             "per_page":"\(perPage)",
             "page":"\(page)"
         ]

@@ -13,4 +13,10 @@ public struct GBUserDAO: Decodable, Equatable {
         case username = "login"
         case avatarPath = "avatarUrl"
     }
+
+    public init(username: String,
+                avatarPath: String = "") {
+        self.username = username
+        self.avatarPath = avatarPath
+    }
 }

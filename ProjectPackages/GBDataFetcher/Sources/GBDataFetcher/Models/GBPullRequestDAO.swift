@@ -6,8 +6,8 @@
 //
 
 public struct GBPullRequestDAO: Decodable, Equatable {
-    let user: GBUserDAO
-    let htmlUrl: String
-    let title: String
-    let body: String
+    public let user: GBUserDAO
+    public let htmlUrl: String
+    public let title: String
+    public let body: String?
 }
