@@ -14,7 +14,6 @@
 		F2FE8EAD27E7B27C0071718F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02327DCF14F00946AFA /* AppDelegate.swift */; };
 		F2FE8EAE27E7B27C0071718F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02527DCF14F00946AFA /* SceneDelegate.swift */; };
 		F2FE8EB227E7D31B0071718F /* GBDataFetcher in Frameworks */ = {isa = PBXBuildFile; productRef = F2FE8EB127E7D31B0071718F /* GBDataFetcher */; settings = {ATTRIBUTES = (Required, ); }; };
-		F2FE8EB327E7D62A0071718F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F298A02727DCF14F00946AFA /* ViewController.swift */; };
 		F2FE8EB527E7D63F0071718F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F2FE8EB427E7D63F0071718F /* XCTest.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -23,7 +22,6 @@
 		F298A02027DCF14F00946AFA /* GithuBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithuBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F298A02327DCF14F00946AFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F298A02527DCF14F00946AFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F298A02727DCF14F00946AFA /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		F298A02C27DCF15300946AFA /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F298A02F27DCF15300946AFA /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F298A03127DCF15300946AFA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -69,7 +67,6 @@
 			children = (
 				F298A02327DCF14F00946AFA /* AppDelegate.swift */,
 				F298A02527DCF14F00946AFA /* SceneDelegate.swift */,
-				F298A02727DCF14F00946AFA /* ViewController.swift */,
 				F28820EF27E92D2E006EFD40 /* GBCoordinator.swift */,
 				F298A02C27DCF15300946AFA /* Assets.xcassets */,
 				F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */,
@@ -169,7 +166,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F2FE8EB327E7D62A0071718F /* ViewController.swift in Sources */,
 				F2FE8EAD27E7B27C0071718F /* AppDelegate.swift in Sources */,
 				F2FE8EAE27E7B27C0071718F /* SceneDelegate.swift in Sources */,
 				F28820F027E92D2F006EFD40 /* GBCoordinator.swift in Sources */,
