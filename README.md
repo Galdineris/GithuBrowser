@@ -27,4 +27,7 @@ A cobertura de testes se encontra abaixo do mínimo viavel e algumas classes apr
 Além disso, foi gerada uma dependencia do módulo de componentes (GBVisualComponents) com o módulo de chamadas de rede (GBDataFetcher), algo que a arquitetura original visava impedir para que ambos fossem o mais facilmente reutilizaveis e para que o projeto fosse mais performático.
 Aliado a tudo isso, o gerenciamento de erros não foi implementado, gerando uma má experiencia e diminuindo a qualidade do projeto.
 
+## Créditos
+Este projeto utiliza elementos visuais cirados por terceiros sob licença aberta.
+[Branch icons created by OwlDsgnr - Flaticon](https://www.flaticon.com/free-icons/branch)
 
