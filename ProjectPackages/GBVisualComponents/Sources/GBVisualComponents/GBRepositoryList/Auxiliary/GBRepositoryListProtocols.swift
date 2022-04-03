@@ -16,7 +16,6 @@ public protocol GBRepositoryListPresenterType: GBRepositoryListCellDelegate {
 
 public protocol GBRepositoryListControllerDelegate: AnyObject {
     func openPullsList(repo: String, username: String)
-    func openPullRequest(_ path: String)
 }
 
 public protocol GBRepositoryListControllerType: UIViewController {
@@ -26,6 +25,6 @@ public protocol GBRepositoryListControllerType: UIViewController {
 }
 
 public protocol GBRepositoryListCellDelegate: AnyObject {
-    func prepareForReuse()
     func fetchImage(for path: String, completion: @escaping (UIImage?) -> Void)
+    func prepareForReuse()
 }

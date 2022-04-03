@@ -52,12 +52,9 @@ public final class GBRepositoryListController: UIViewController {
     }
 
     private func setupView() {
+        view.backgroundColor = .white
         buildViewHierarchy()
         configureConstraints()
-
-        let activityIndicator = UIActivityIndicatorView(frame: .zero)
-        activityIndicator.startAnimating()
-        repositoryList.tableFooterView = activityIndicator
     }
 
     private func buildViewHierarchy() {
@@ -77,10 +74,12 @@ public final class GBRepositoryListController: UIViewController {
 extension GBRepositoryListController: GBRepositoryListControllerType {
     public func reloadData() {
         repositoryList.reloadData()
+        setLoading(to: false)
     }
 
     public func openPullsList(in repo: String, of user: String) {
-        delegate?.openPullsList(repo: repo, username: user)
+        delegate?.openPullsList(repo: repo,
+                                username: user)
     }
 
     public func setLoading(to isLoading: Bool) {

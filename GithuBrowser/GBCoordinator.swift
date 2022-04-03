@@ -45,13 +45,15 @@ final class GBCoordinator {
     }
 }
 extension GBCoordinator: GBRepositoryListControllerDelegate {
-    func openPullRequest(_ path: String) {
-        guard let controller = openWebPage(path) else { return }
-        navigationController.present(controller, animated: true)
-    }
-
     func openPullsList(repo: String, username: String) {
         let controller = createPullsList(repo: repo, username: username)
         navigationController.pushViewController(controller, animated: true)
+    }
+}
+
+extension GBCoordinator: GBPullsListControllerDelegate {
+    func openPullRequest(_ path: String) {
+        guard let controller = openWebPage(path) else { return }
+        navigationController.present(controller, animated: true)
     }
 }

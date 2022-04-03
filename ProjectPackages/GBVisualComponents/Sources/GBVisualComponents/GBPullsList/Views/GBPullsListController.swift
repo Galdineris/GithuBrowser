@@ -10,7 +10,7 @@ import UIKit
 
 
 public final class GBPullsListController: UIViewController {
-    public weak var delegate: GBRepositoryListControllerDelegate?
+    public weak var delegate: GBPullsListControllerDelegate?
     private var presenter: GBPullsListPresenterType
 
     private let listLoadingIndicator: UIActivityIndicatorView = {

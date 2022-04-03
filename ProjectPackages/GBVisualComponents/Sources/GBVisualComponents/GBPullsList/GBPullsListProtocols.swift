@@ -16,7 +16,6 @@ public protocol GBPullsListPresenterType: GBPullsListCellDelegate {
 }
 
 public protocol GBPullsListControllerDelegate: AnyObject {
-    func openPullsList(repo: String, username: String)
     func openPullRequest(_ path: String)
 }
 
