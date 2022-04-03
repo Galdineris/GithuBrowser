@@ -22,6 +22,5 @@ public protocol GBRepositoryListControllerDelegate: AnyObject {
 public protocol GBRepositoryListControllerType: UIViewController {
     func reloadData()
     func openPullsList(in repo: String, of user: String)
-    func openPullsRequest(in path: String)
     func setLoading(to isLoading: Bool)
 }

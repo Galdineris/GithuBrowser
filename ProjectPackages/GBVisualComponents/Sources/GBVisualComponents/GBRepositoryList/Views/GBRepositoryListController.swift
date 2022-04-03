@@ -79,8 +79,6 @@ extension GBRepositoryListController: GBRepositoryListControllerType {
         repositoryList.reloadData()
     }
 
-    public func openPullsRequest(in path: String) { }
-
     public func openPullsList(in repo: String, of user: String) {
         delegate?.openPullsList(repo: repo, username: user)
     }

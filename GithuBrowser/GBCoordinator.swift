@@ -29,10 +29,10 @@ final class GBCoordinator {
         return controller
     }
 
-    private func createPullsList(repo: String, username: String) -> GBPullsListViewController {
+    private func createPullsList(repo: String, username: String) -> GBPullsListController {
         let presenter = GBPullsListPresenter(model: GBPullsListModel(repo: repo,
                                                                      username: username))
-        let controller = GBPullsListViewController(presenter: presenter)
+        let controller = GBPullsListController(presenter: presenter)
         controller.delegate = self
         return controller
     }

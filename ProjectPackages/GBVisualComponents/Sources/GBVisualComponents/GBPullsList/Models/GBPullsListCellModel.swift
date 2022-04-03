@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 public struct GBPullsListCellModel {
     var title: String
     var description: String

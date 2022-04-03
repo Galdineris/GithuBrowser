@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import GBDataFetcher
 
 public struct GBPullsListModel {
     var repo: String

@@ -9,7 +9,7 @@ import Foundation
 import GBDataFetcher
 
 public final class GBPullsListPresenter {
-    public weak var controller: GBPullsListViewController?
+    public weak var controller: GBPullsListControllerType?
     public var models: [GBPullsListCellModel] = []
 
     private let model: GBPullsListModel
@@ -20,8 +20,11 @@ public final class GBPullsListPresenter {
         self.model = model
     }
 
-    private var lastPageFetched: Int = 1
+    var lastPageFetched: Int = 1
 
+}
+
+extension GBPullsListPresenter: GBPullsListPresenterType {
     public func fetchData() {
         guard lastPageFetched > 0 else {
             return
@@ -54,6 +57,6 @@ public final class GBPullsListPresenter {
     public func selectCellAt(index: Int) {
         guard index < models.count else { return }
         let pullModel = models[index]
-        controller?.openPullsRequest(in: pullModel.pullPath)
+        controller?.openPullRequest(in: pullModel.pullPath)
     }
 }

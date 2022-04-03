@@ -9,9 +9,9 @@ import Foundation
 import UIKit
 
 
-public final class GBPullsListViewController: UIViewController {
+public final class GBPullsListController: UIViewController {
     public weak var delegate: GBRepositoryListControllerDelegate?
-    private var presenter: GBPullsListPresenter
+    private var presenter: GBPullsListPresenterType
 
     private let listLoadingIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(frame: .zero)
@@ -34,7 +34,7 @@ public final class GBPullsListViewController: UIViewController {
         return tableView
     }()
 
-    public init(presenter: GBPullsListPresenter) {
+    public init(presenter: GBPullsListPresenterType) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         self.presenter.controller = self
@@ -74,15 +74,13 @@ public final class GBPullsListViewController: UIViewController {
     }
 }
 
-extension GBPullsListViewController: GBRepositoryListControllerType {
-    public func openPullsList(in repo: String, of user: String) { }
-
+extension GBPullsListController: GBPullsListControllerType {
     public func reloadData() {
         repositoryList.reloadData()
         setLoading(to: false)
     }
 
-    public func openPullsRequest(in path: String) {
+    public func openPullRequest(in path: String) {
         delegate?.openPullRequest(path)
     }
 
@@ -95,7 +93,7 @@ extension GBPullsListViewController: GBRepositoryListControllerType {
     }
 }
 
-extension GBPullsListViewController: UITableViewDelegate, UITableViewDataSource {
+extension GBPullsListController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.models.count
     }
