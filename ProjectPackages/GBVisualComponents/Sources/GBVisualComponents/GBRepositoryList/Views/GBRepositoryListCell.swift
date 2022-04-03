@@ -20,7 +20,7 @@ public final class GBRepositoryListCell: UITableViewCell {
 
     private let forksLabel: GBIconLabel = {
         let label = GBIconLabel()
-        label.icon = UIImage(named: "fork", in: Bundle.module, with: nil)
+        label.icon = UIImage(named: "forkIcon", in: Bundle.module, with: nil)
         label.tintColor = .systemOrange
         label.accessibilityIdentifier = "labelForks"
         return label
