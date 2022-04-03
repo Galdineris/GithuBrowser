@@ -31,19 +31,19 @@ extension GBGetRequestType {
     }
 }
 
-protocol GBServiceType {
+protocol GBGeneralServiceType {
     func request<RequestType: GBGetRequestType>(_ requestType: RequestType,
-                                                session: URLSessionProtocol,
+                                                session: GBSessionType,
                                                 responseBlock: @escaping (Result<RequestType.ResponseType, GBErrors>) -> Void) ->
-    URLSessionDataTask?
+    GBDataTaskType?
 }
 
-extension GBServiceType {
+extension GBGeneralServiceType {
     @discardableResult
     func request<RequestType: GBGetRequestType>(_ requestType: RequestType,
-                                                session: URLSessionProtocol = URLSession.shared,
+                                                session: GBSessionType = URLSession.shared,
                                                 responseBlock: @escaping (Result<RequestType.ResponseType, GBErrors>) -> Void) ->
-    URLSessionDataTask? {
+    GBDataTaskType? {
         do {
             let request = try buildRequest(from: requestType)
             let dataTask = session.dataTask(with: request) { [responseBlock] data, response, error in
@@ -99,14 +99,21 @@ extension GBServiceType {
     }
 }
 
-public protocol URLSessionProtocol {
+public protocol GBSessionType {
     func dataTask(with request: URLRequest,
-                  completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask?
+                  completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> GBDataTaskType?
 }
 
-extension URLSession: URLSessionProtocol {
+extension URLSession: GBSessionType {
     public func dataTask(with request: URLRequest,
-                         completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> URLSessionDataTask? {
+                         completion: @escaping (Data?, URLResponse?, Error?) -> Void) -> GBDataTaskType? {
         return dataTask(with: request, completionHandler: completion)
     }
 }
+
+public protocol GBDataTaskType {
+    func resume()
+    func cancel()
+}
+
+extension URLSessionDataTask: GBDataTaskType { }

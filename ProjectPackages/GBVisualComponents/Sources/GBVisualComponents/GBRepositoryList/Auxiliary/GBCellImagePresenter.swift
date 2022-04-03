@@ -9,11 +9,12 @@ import Foundation
 import UIKit
 import GBDataFetcher
 
-final class GBCellImageService {
-    var dataTask: URLSessionDataTask? {
-        willSet {
-            dataTask?.cancel()
-        }
+final class GBCellImagePresenter {
+    let service: GBService?
+    var dataTask: URLSessionDataTask?
+
+    init(service: GBService? = GBService(session: URLSession.shared)) {
+        self.service = service
     }
 
     deinit {
@@ -31,6 +32,13 @@ final class GBCellImageService {
         }
 
         self.dataTask = dataTask
+    }
+}
+
+extension GBCellImagePresenter: GBPullsListCellDelegate,
+                                GBRepositoryListCellDelegate {
+    func prepareForReuse() {
+        dataTask?.cancel()
     }
 }
 

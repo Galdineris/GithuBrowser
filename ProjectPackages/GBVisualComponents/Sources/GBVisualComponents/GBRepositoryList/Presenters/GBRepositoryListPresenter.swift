@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import GBDataFetcher
 
 public final class GBRepositoryListPresenter: GBRepositoryListPresenterType {
@@ -38,5 +39,21 @@ public final class GBRepositoryListPresenter: GBRepositoryListPresenterType {
         guard index < models.count else { return }
         let repoModel = models[index]
         controller?.openPullsList(in: repoModel.title, of: repoModel.avatarName)
+    }
+}
+
+extension GBRepositoryListPresenter: GBRepositoryListCellDelegate {
+    public func prepareForReuse() { }
+
+    public func fetchImage(for path: String,
+                           completion: @escaping (UIImage?) -> Void) {
+        service.getImage(from: path) { result in
+            switch result {
+            case .success(let image):
+                completion(image)
+            case .failure:
+                completion(nil)
+            }
+        }
     }
 }

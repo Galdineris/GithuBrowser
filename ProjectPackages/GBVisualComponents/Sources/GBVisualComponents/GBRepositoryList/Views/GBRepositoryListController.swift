@@ -104,6 +104,7 @@ extension GBRepositoryListController: UITableViewDelegate, UITableViewDataSource
             return UITableViewCell()
         }
 
+        cell.delegate = presenter
         cell.show(presenter.models[indexPath.row])
 
         if indexPath.row > presenter.models.count - 2 {

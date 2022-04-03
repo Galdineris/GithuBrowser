@@ -11,7 +11,7 @@ import UIKit
 public final class GBPullsListCell: UITableViewCell {
     static let reuseIdentifier = "GBPullsListCell"
 
-    let imageService: GBCellImageService = GBCellImageService()
+    weak var delegate: GBPullsListCellDelegate?
 
     private let avatarView: GBRepositoryAvatar = {
         let avatar = GBRepositoryAvatar(orientation: .vertical)
@@ -51,7 +51,7 @@ public final class GBPullsListCell: UITableViewCell {
 
         avatarView.show(GBAvatarModel(username: model.avatarName))
 
-        imageService.fetchImage(for: model.avatarImagePath ?? "") { [weak self, model] image in
+        delegate?.fetchImage(for: model.avatarImagePath ?? "") { [weak self, model] image in
             DispatchQueue.main.async {
                 self?.avatarView.show(GBAvatarModel(username: model.avatarName, image: image))
             }
@@ -83,12 +83,11 @@ public final class GBPullsListCell: UITableViewCell {
 
     public override func prepareForReuse() {
         super.prepareForReuse()
-        let avatarModel = GBAvatarModel(username: "",
-                                        image: nil)
+        delegate?.prepareForReuse()
+
+        avatarView.show(GBAvatarModel(username: ""))
         titleLabel.text = nil
         descriptionLabel.text = nil
-        imageService.dataTask = nil
-        avatarView.show(avatarModel)
     }
 
     private func setupView() {
@@ -112,7 +111,6 @@ public final class GBPullsListCell: UITableViewCell {
             labelsStackView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
             labelsStackView.rightAnchor.constraint(equalTo: avatarView.leftAnchor),
 
-            avatarView.rightAnchor.constraint(equalTo: contraintGuide.rightAnchor),
             avatarView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
             avatarView.rightAnchor.constraint(equalTo: contraintGuide.rightAnchor),
             avatarView.widthAnchor.constraint(equalTo: contraintGuide.widthAnchor,

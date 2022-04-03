@@ -7,6 +7,7 @@
 
 import Foundation
 import GBDataFetcher
+import UIKit
 
 public final class GBPullsListPresenter {
     public weak var controller: GBPullsListControllerType?
@@ -21,10 +22,22 @@ public final class GBPullsListPresenter {
     }
 
     var lastPageFetched: Int = 1
-
 }
 
 extension GBPullsListPresenter: GBPullsListPresenterType {
+    public func fetchImage(for path: String, completion: @escaping (UIImage?) -> Void) {
+        service.getImage(from: path) { result in
+            switch result {
+            case .success(let image):
+                completion(image)
+            case .failure:
+                completion(nil)
+            }
+        }
+    }
+
+    public func prepareForReuse() { }
+
     public func fetchData() {
         guard lastPageFetched > 0 else {
             return

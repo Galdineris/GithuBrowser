@@ -10,7 +10,7 @@ import UIKit
 public final class GBRepositoryListCell: UITableViewCell {
     static let reuseIdentifier = "GBRepositoryListCell"
 
-    let imageService: GBCellImageService = GBCellImageService()
+    weak var delegate: GBRepositoryListCellDelegate?
 
     private let avatarView: GBRepositoryAvatar = {
         let avatar = GBRepositoryAvatar(orientation: .vertical)
@@ -77,7 +77,7 @@ public final class GBRepositoryListCell: UITableViewCell {
 
         avatarView.show(GBAvatarModel(username: model.avatarName))
 
-        imageService.fetchImage(for: model.avatarImagePath ?? "") { [weak self, model] image in
+        delegate?.fetchImage(for: model.avatarImagePath ?? "") { [weak self, model] image in
             DispatchQueue.main.async {
                 self?.avatarView.show(GBAvatarModel(username: model.avatarName, image: image))
             }
@@ -109,13 +109,12 @@ public final class GBRepositoryListCell: UITableViewCell {
 
     public override func prepareForReuse() {
         super.prepareForReuse()
-        let avatarModel = GBAvatarModel(username: "",
-                                        image: nil)
+        delegate?.prepareForReuse()
+        let avatarModel = GBAvatarModel(username: "")
         titleLabel.text = nil
         descriptionLabel.text = nil
         forksLabel.text = ""
         starsLabel.text = ""
-        imageService.dataTask = nil
         avatarView.show(avatarModel)
     }
 

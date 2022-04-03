@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-public protocol GBPullsListPresenterType {
+public protocol GBPullsListPresenterType: GBPullsListCellDelegate {
     var controller: GBPullsListControllerType? { get set }
     var models: [GBPullsListCellModel] { get }
     func fetchData()
@@ -24,4 +24,9 @@ public protocol GBPullsListControllerType: UIViewController {
     func reloadData()
     func openPullRequest(in path: String)
     func setLoading(to isLoading: Bool)
+}
+
+public protocol GBPullsListCellDelegate: AnyObject {
+    func fetchImage(for path: String, completion: @escaping (UIImage?) -> Void)
+    func prepareForReuse()
 }

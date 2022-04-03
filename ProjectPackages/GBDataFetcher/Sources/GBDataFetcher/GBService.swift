@@ -17,19 +17,19 @@ enum GBErrors: Error {
     case genericError
 }
 
-public struct GBService: GBServiceType {
+public struct GBService: GBGeneralServiceType {
 
-    public init(session: URLSessionProtocol) {
+    public init(session: GBSessionType = URLSession.shared) {
         self.session = session
     }
-    public var session: URLSessionProtocol
+    public var session: GBSessionType
 
     @discardableResult
     public func getRepositories(for page: Int,
                                 pageSize: Int = 10,
                                 completion: @escaping (Result<[GBRepositoryDAO], Error>) -> Void) -> URLSessionDataTask? {
         let service = GBRepositoryRequest(page: page, perPage: pageSize)
-        return request(service, session: session) { result in
+        let dataTask = request(service, session: session) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))
@@ -37,6 +37,7 @@ public struct GBService: GBServiceType {
                 completion(.failure(error))
             }
         }
+        return dataTask as? URLSessionDataTask
     }
 
     @discardableResult
@@ -49,7 +50,7 @@ public struct GBService: GBServiceType {
                                      repository: repository,
                                      page: page,
                                      perPage: pageSize)
-        return request(service, session: session) { result in
+        let dataTask = request(service, session: session) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))
@@ -57,13 +58,14 @@ public struct GBService: GBServiceType {
                 completion(.failure(error))
             }
         }
+        return dataTask as? URLSessionDataTask
     }
 
     @discardableResult
     public func getImage(from path: String,
                          completion: @escaping (Result<UIImage?, Error>) -> Void) -> URLSessionDataTask? {
         let service = GBImageRequest(fullPath: path)
-        return request(service, session: session) { result in
+        let dataTask = request(service, session: session) { result in
             switch result {
             case .success(let response):
                 completion(.success(response))
@@ -71,5 +73,6 @@ public struct GBService: GBServiceType {
                 completion(.failure(error))
             }
         }
+        return dataTask as? URLSessionDataTask
     }
 }
