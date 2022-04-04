@@ -17,6 +17,7 @@ public final class GBListController<GBListCell: GBListCellType>: UIViewControlle
         let view = UIActivityIndicatorView(frame: rect)
         view.style = .large
         view.hidesWhenStopped = true
+        view.accessibilityIdentifier = "loadingIndicatorList"
         return view
     }()
 
@@ -31,6 +32,7 @@ public final class GBListController<GBListCell: GBListCellType>: UIViewControlle
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = listLoadingIndicator
+        tableView.accessibilityIdentifier = "listRepository"
         return tableView
     }()
 

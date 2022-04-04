@@ -50,6 +50,7 @@ class GBRepositoryListCellTests: XCTestCase {
                                          description: "description",
                                          forks: 10,
                                          stars: 10,
-                                         avatar: avatar)
+                                         avatarName: "avatarName",
+                                         avatarImagePath: "avatarImagePath")
     }
 }

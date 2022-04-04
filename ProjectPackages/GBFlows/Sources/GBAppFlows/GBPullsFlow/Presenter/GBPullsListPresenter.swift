@@ -65,7 +65,7 @@ extension GBPullsListPresenter: GBListPresenterType {
                 DispatchQueue.main.async {
                     self?.controller?.reloadData()
                 }
-            case .failure(let error):
+            case .failure(let _):
                 // TODO: Error Handling
                 return
             }

@@ -42,11 +42,8 @@ final class GBRepositoryAvatarTests: XCTestCase {
         sut.show(model)
 
         let imageView = sut.viewWith(accessibilityIdentifier: "imageViewAvatar") as? UIImageView
-        let subtitleLabel = sut.viewWith(accessibilityIdentifier: "labelSubtitle") as? UILabel
         XCTAssertNotNil(imageView)
-        XCTAssertNotNil(subtitleLabel)
         XCTAssertTrue(imageView?.isHidden ?? false)
-        XCTAssertTrue(subtitleLabel?.isHidden ?? false)
     }
 
     func test_show_withImage_shouldShowImage() throws {
@@ -59,13 +56,12 @@ final class GBRepositoryAvatarTests: XCTestCase {
         XCTAssertEqual(imageView?.image, .add)
     }
 
-    func test_show_withRealName_shouldShowSubtitle() throws {
-        let model = GBAvatarModel(username: "", realName: "realName")
+    func test_show_withUsername_shouldShowTitle() throws {
+        let model = GBAvatarModel(username: "username")
         sut.show(model)
 
-        let subtitleLabel = sut.viewWith(accessibilityIdentifier: "labelSubtitle") as? UILabel
-        XCTAssertNotNil(subtitleLabel)
-        XCTAssertFalse(subtitleLabel?.isHidden ?? true)
-        XCTAssertEqual(subtitleLabel?.text, "realName")
+        let titleLabel = sut.viewWith(accessibilityIdentifier: "labelTitle") as? UILabel
+        XCTAssertNotNil(titleLabel)
+        XCTAssertEqual(titleLabel?.text, "username")
     }
 }
