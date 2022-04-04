@@ -1,16 +1,16 @@
 //
-//  GBRepositoryListController.swift
+//  GBListController.swift
 //  
 //
-//  Created by Rafael Galdino on 13/03/22.
+//  Created by Rafael Galdino on 03/04/22.
 //
 
+import Foundation
 import UIKit
 
 
-public final class GBRepositoryListController: UIViewController {
-    public weak var delegate: GBRepositoryListControllerDelegate?
-    private var presenter: GBRepositoryListPresenterType
+public final class GBListController<GBListCell: GBListCellType>: UIViewController, UITableViewDelegate, UITableViewDataSource, GBListControllerType {
+    private var presenter: GBListPresenterType
 
     private let listLoadingIndicator: UIActivityIndicatorView = {
         let view = UIActivityIndicatorView(frame: .zero)
@@ -18,25 +18,26 @@ public final class GBRepositoryListController: UIViewController {
         view.hidesWhenStopped = true
         return view
     }()
+
     private lazy var repositoryList: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.estimatedRowHeight = 300
         tableView.rowHeight = UITableView.automaticDimension
         tableView.separatorStyle = .singleLine
-        tableView.register(GBRepositoryListCell.self,
-                           forCellReuseIdentifier: GBRepositoryListCell.reuseIdentifier)
+        tableView.register(GBListCell.self,
+                           forCellReuseIdentifier: GBListCell.reuseIdentifier)
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = listLoadingIndicator
         return tableView
     }()
 
-    public init(presenter: GBRepositoryListPresenterType = GBRepositoryListPresenter()) {
+    public init(presenter: GBListPresenterType, title: String? = nil) {
         self.presenter = presenter
         super.init(nibName: nil, bundle: nil)
         self.presenter.controller = self
-        title = "GithuBrowser"
+        self.title = title
         navigationController?.navigationBar.prefersLargeTitles = true
         setupView()
     }
@@ -62,24 +63,18 @@ public final class GBRepositoryListController: UIViewController {
     }
 
     private func configureConstraints() {
+        let contraintGuides = view.safeAreaLayoutGuide
         NSLayoutConstraint.activate([
-            repositoryList.topAnchor.constraint(equalTo: view.topAnchor),
-            repositoryList.rightAnchor.constraint(equalTo: view.rightAnchor),
-            repositoryList.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            repositoryList.leftAnchor.constraint(equalTo: view.leftAnchor)
+            repositoryList.topAnchor.constraint(equalTo: contraintGuides.topAnchor),
+            repositoryList.rightAnchor.constraint(equalTo: contraintGuides.rightAnchor),
+            repositoryList.bottomAnchor.constraint(equalTo: contraintGuides.bottomAnchor),
+            repositoryList.leftAnchor.constraint(equalTo: contraintGuides.leftAnchor)
         ])
     }
-}
 
-extension GBRepositoryListController: GBRepositoryListControllerType {
     public func reloadData() {
         repositoryList.reloadData()
         setLoading(to: false)
-    }
-
-    public func openPullsList(in repo: String, of user: String) {
-        delegate?.openPullsList(repo: repo,
-                                username: user)
     }
 
     public func setLoading(to isLoading: Bool) {
@@ -89,29 +84,31 @@ extension GBRepositoryListController: GBRepositoryListControllerType {
             listLoadingIndicator.stopAnimating()
         }
     }
-}
 
-extension GBRepositoryListController: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.models.count
+        return presenter.cells.count
     }
+
 
     public func tableView(_ tableView: UITableView,
                           cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: GBRepositoryListCell.reuseIdentifier) as? GBRepositoryListCell,
-              presenter.models.count >= indexPath.row else {
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: GBListCell.reuseIdentifier) as? GBListCell,
+              presenter.cells.count >= indexPath.row,
+              let cellModel = presenter.cells[indexPath.row] as? GBListCell.GBCellModel else {
             return UITableViewCell()
         }
 
         cell.delegate = presenter
-        cell.show(presenter.models[indexPath.row])
+        cell.show(cellModel)
 
-        if indexPath.row > presenter.models.count - 2 {
+        if indexPath.row > presenter.cells.count - 2 {
             presenter.fetchData()
         }
 
         return cell
     }
+
 
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.selectCellAt(index: indexPath.row)

@@ -8,10 +8,10 @@
 import Foundation
 import UIKit
 
-public final class GBPullsListCell: UITableViewCell {
-    static let reuseIdentifier = "GBPullsListCell"
-
-    weak var delegate: GBPullsListCellDelegate?
+public final class GBPullsListCell: UITableViewCell, GBListCellType {
+    public typealias GBCellModel = GBPullsListCellModel
+    public static let reuseIdentifier = "GBPullsListCell"
+    weak public var delegate: GBListCellDelegate?
 
     private let avatarView: GBRepositoryAvatar = {
         let avatar = GBRepositoryAvatar(orientation: .vertical)

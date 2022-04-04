@@ -10,21 +10,22 @@ import GBDataFetcher
 import UIKit
 
 public final class GBPullsListPresenter {
-    public weak var controller: GBPullsListControllerType?
-    public var models: [GBPullsListCellModel] = []
+    public weak var controller: GBListControllerType?
+    public weak var delegate: GBListPresenterDelegate?
+    public var cells: [Any] = []
 
     private let model: GBPullsListModel
     let service = GBService(session: URLSession.shared)
+    private var lastPageFetched: Int = 1
 
 
-    public init(model: GBPullsListModel) {
-        self.model = model
+    public init(repo: String, username: String) {
+        self.model = GBPullsListModel(repo: repo, username: username)
     }
 
-    var lastPageFetched: Int = 1
 }
 
-extension GBPullsListPresenter: GBPullsListPresenterType {
+extension GBPullsListPresenter: GBListPresenterType {
     public func fetchImage(for path: String, completion: @escaping (UIImage?) -> Void) {
         service.getImage(from: path) { result in
             switch result {
@@ -55,7 +56,7 @@ extension GBPullsListPresenter: GBPullsListPresenterType {
                     }
                     return
                 }
-                self?.models.append(contentsOf: GBPullsListAdapter.adapt(pulls))
+                self?.cells.append(contentsOf: GBPullsListAdapter.adapt(pulls))
                 self?.lastPageFetched += 1
                 DispatchQueue.main.async {
                     self?.controller?.reloadData()
@@ -68,8 +69,9 @@ extension GBPullsListPresenter: GBPullsListPresenterType {
     }
 
     public func selectCellAt(index: Int) {
-        guard index < models.count else { return }
-        let pullModel = models[index]
-        controller?.openPullRequest(in: pullModel.pullPath)
+        guard index < cells.count,
+              let pullModel = cells[index] as? GBPullsListCellModel
+        else { return }
+        delegate?.handleSelection(with: ["path": pullModel.pullPath])
     }
 }

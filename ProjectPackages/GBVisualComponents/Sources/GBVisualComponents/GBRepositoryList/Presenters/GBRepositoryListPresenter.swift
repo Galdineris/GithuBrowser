@@ -9,40 +9,18 @@ import Foundation
 import UIKit
 import GBDataFetcher
 
-public final class GBRepositoryListPresenter: GBRepositoryListPresenterType {
-    public weak var controller: GBRepositoryListControllerType?
+public final class GBRepositoryListPresenter {
+    public weak var controller: GBListControllerType?
+    public weak var delegate: GBListPresenterDelegate?
+    public var cells: [Any] = []
+
     let service = GBService(session: URLSession.shared)
-    public var models: [GBRepositoryListCellModel] = []
-
-    public init() { }
-
     private var lastPageFetched: Int = 1
 
-    public func fetchData() {
-        service.getRepositories(for: lastPageFetched) { [weak self] result in
-            switch result {
-            case .success(let repositories):
-
-                self?.models.append(contentsOf: GBRepositoryListAdapter.adapt(repositories))
-                self?.lastPageFetched += 1
-                DispatchQueue.main.async {
-                    self?.controller?.reloadData()
-                }
-            case .failure(let error):
-                // TODO: Error Handling
-                return
-            }
-        }
-    }
-
-    public func selectCellAt(index: Int) {
-        guard index < models.count else { return }
-        let repoModel = models[index]
-        controller?.openPullsList(in: repoModel.title, of: repoModel.avatarName)
-    }
+    public init() { }
 }
 
-extension GBRepositoryListPresenter: GBRepositoryListCellDelegate {
+extension GBRepositoryListPresenter: GBListPresenterType {
     public func prepareForReuse() { }
 
     public func fetchImage(for path: String,
@@ -55,5 +33,30 @@ extension GBRepositoryListPresenter: GBRepositoryListCellDelegate {
                 completion(nil)
             }
         }
+    }
+
+    public func fetchData() {
+        service.getRepositories(for: lastPageFetched) { [weak self] result in
+            switch result {
+            case .success(let repositories):
+
+                self?.cells.append(contentsOf: GBRepositoryListAdapter.adapt(repositories))
+                self?.lastPageFetched += 1
+                DispatchQueue.main.async {
+                    self?.controller?.reloadData()
+                }
+            case .failure(let error):
+                // TODO: Error Handling
+                return
+            }
+        }
+    }
+
+    public func selectCellAt(index: Int) {
+        guard index < cells.count,
+              let pullsModel = cells[index] as? GBRepositoryListCellModel
+        else { return }
+        delegate?.handleSelection(with: ["repo": pullsModel.title,
+                                         "username": pullsModel.avatarName])
     }
 }

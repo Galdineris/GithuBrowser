@@ -22,18 +22,20 @@ final class GBCoordinator {
         navigationController.viewControllers = [controller]
     }
 
-    private func createRepositoryList() -> GBRepositoryListController {
+    private func createRepositoryList() -> GBListControllerType {
         let presenter = GBRepositoryListPresenter()
-        let controller = GBRepositoryListController(presenter: presenter)
-        controller.delegate = self
+        presenter.delegate = self
+        let controller = GBListController<GBRepositoryListCell>(presenter: presenter,
+                                                                title: "Swift Repositories")
         return controller
     }
 
-    private func createPullsList(repo: String, username: String) -> GBPullsListController {
-        let presenter = GBPullsListPresenter(model: GBPullsListModel(repo: repo,
-                                                                     username: username))
-        let controller = GBPullsListController(presenter: presenter)
-        controller.delegate = self
+    private func createPullsList(repo: String, username: String) -> GBListControllerType {
+        let presenter = GBPullsListPresenter(repo: repo,
+                                             username: username)
+        presenter.delegate = self
+        let controller = GBListController<GBPullsListCell>(presenter: presenter,
+                                                           title: "\(repo)")
         return controller
     }
 
@@ -44,15 +46,26 @@ final class GBCoordinator {
         return controller
     }
 }
-extension GBCoordinator: GBRepositoryListControllerDelegate {
-    func openPullsList(repo: String, username: String) {
+
+extension GBCoordinator: GBListPresenterDelegate {
+    func handleSelection(with args: [String : Any]) {
+        if let path = args["path"] as? String {
+            openPullRequest(path)
+            return
+        }
+        if let repo = args["repo"] as? String,
+           let username = args["username"] as? String {
+            openPullsList(in: repo, of: username)
+            return
+        }
+    }
+
+    private func openPullsList(in repo: String, of username: String) {
         let controller = createPullsList(repo: repo, username: username)
         navigationController.pushViewController(controller, animated: true)
     }
-}
 
-extension GBCoordinator: GBPullsListControllerDelegate {
-    func openPullRequest(_ path: String) {
+    private func openPullRequest(_ path: String) {
         guard let controller = openWebPage(path) else { return }
         navigationController.present(controller, animated: true)
     }

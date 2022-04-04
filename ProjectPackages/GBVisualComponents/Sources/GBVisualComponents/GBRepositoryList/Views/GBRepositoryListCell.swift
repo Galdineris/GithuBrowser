@@ -5,12 +5,13 @@
 //  Created by Rafael Galdino on 13/03/22.
 //
 
+import Foundation
 import UIKit
 
-public final class GBRepositoryListCell: UITableViewCell {
-    static let reuseIdentifier = "GBRepositoryListCell"
-
-    weak var delegate: GBRepositoryListCellDelegate?
+public final class GBRepositoryListCell: UITableViewCell, GBListCellType {
+    public typealias GBCellModel = GBRepositoryListCellModel
+    public static let reuseIdentifier = "GBRepositoryListCell"
+    weak public var delegate: GBListCellDelegate?
 
     private let avatarView: GBRepositoryAvatar = {
         let avatar = GBRepositoryAvatar(orientation: .vertical)
