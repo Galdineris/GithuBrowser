@@ -17,7 +17,8 @@ public final class GBPullsListPresenter {
 
     private let model: GBPullsListModel
     let service = GBService(session: URLSession.shared)
-    private var lastPageFetched: Int = 1
+    private var currentPage: Int = 1
+    private var isNotFetching: Bool = true
 
 
     public init(repo: String, username: String) {
@@ -27,7 +28,10 @@ public final class GBPullsListPresenter {
 }
 
 extension GBPullsListPresenter: GBListPresenterType {
-    public func fetchImage(for path: String, completion: @escaping (UIImage?) -> Void) {
+    public func prepareForReuse() { }
+
+    public func fetchImage(for path: String,
+                           completion: @escaping (UIImage?) -> Void) {
         service.getImage(from: path) { result in
             switch result {
             case .success(let image):
@@ -38,27 +42,26 @@ extension GBPullsListPresenter: GBListPresenterType {
         }
     }
 
-    public func prepareForReuse() { }
-
     public func fetchData() {
-        guard lastPageFetched > 0 else {
+        guard currentPage > 0, isNotFetching else {
             return
         }
+        isNotFetching = false
         controller?.setLoading(to: true)
         service.getPulls(of: model.repo,
                          user: model.username,
-                         for: lastPageFetched) { [weak self] result in
+                         for: currentPage) { [weak self] result in
             switch result {
             case .success(let pulls):
                 guard !pulls.isEmpty else {
-                    self?.lastPageFetched = -1
+                    self?.currentPage = -1
                     DispatchQueue.main.async {
                         self?.controller?.setLoading(to: false)
                     }
                     return
                 }
                 self?.cells.append(contentsOf: GBPullsListAdapter.adapt(pulls))
-                self?.lastPageFetched += 1
+                self?.currentPage += 1
                 DispatchQueue.main.async {
                     self?.controller?.reloadData()
                 }
@@ -66,6 +69,7 @@ extension GBPullsListPresenter: GBListPresenterType {
                 // TODO: Error Handling
                 return
             }
+            self?.isNotFetching = true
         }
     }
 

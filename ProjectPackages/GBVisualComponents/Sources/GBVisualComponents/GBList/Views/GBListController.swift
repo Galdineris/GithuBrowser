@@ -13,7 +13,8 @@ public final class GBListController<GBListCell: GBListCellType>: UIViewControlle
     private var presenter: GBListPresenterType
 
     private let listLoadingIndicator: UIActivityIndicatorView = {
-        let view = UIActivityIndicatorView(frame: .zero)
+        let rect = CGRect(x: 0, y: 0, width: 50, height: 100)
+        let view = UIActivityIndicatorView(frame: rect)
         view.style = .large
         view.hidesWhenStopped = true
         return view

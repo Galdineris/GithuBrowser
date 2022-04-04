@@ -16,7 +16,8 @@ public final class GBRepositoryListPresenter {
     public var cells: [Any] = []
 
     let service = GBService(session: URLSession.shared)
-    private var lastPageFetched: Int = 1
+    private var currentPage: Int = 1
+    private var isNotFetching: Bool = true
 
     public init() { }
 }
@@ -37,12 +38,16 @@ extension GBRepositoryListPresenter: GBListPresenterType {
     }
 
     public func fetchData() {
-        service.getRepositories(for: lastPageFetched) { [weak self] result in
+        guard currentPage > 0, isNotFetching else {
+            return
+        }
+        isNotFetching = false
+        controller?.setLoading(to: true)
+        service.getRepositories(for: currentPage) { [weak self] result in
             switch result {
             case .success(let repositories):
-
                 self?.cells.append(contentsOf: GBRepositoryListAdapter.adapt(repositories))
-                self?.lastPageFetched += 1
+                self?.currentPage += 1
                 DispatchQueue.main.async {
                     self?.controller?.reloadData()
                 }
@@ -50,6 +55,7 @@ extension GBRepositoryListPresenter: GBListPresenterType {
                 // TODO: Error Handling
                 return
             }
+            self?.isNotFetching = true
         }
     }
 

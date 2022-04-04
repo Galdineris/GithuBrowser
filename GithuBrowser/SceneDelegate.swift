@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import GBFlows
+import GBAppFlows
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
@@ -22,17 +22,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         navigationController.navigationBar.prefersLargeTitles = true
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-        coordinator?.start()
+        coordinator?.start(with: .repositories)
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }
-
     func sceneDidBecomeActive(_ scene: UIScene) { }
-
     func sceneWillResignActive(_ scene: UIScene) { }
-
     func sceneWillEnterForeground(_ scene: UIScene) { }
-
     func sceneDidEnterBackground(_ scene: UIScene) { }
 }
 

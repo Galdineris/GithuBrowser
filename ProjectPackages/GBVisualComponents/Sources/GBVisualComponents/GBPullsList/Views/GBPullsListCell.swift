@@ -111,10 +111,12 @@ public final class GBPullsListCell: UITableViewCell, GBListCellType {
             labelsStackView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
             labelsStackView.rightAnchor.constraint(equalTo: avatarView.leftAnchor),
 
-            avatarView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
+            avatarView.centerYAnchor.constraint(equalTo: contraintGuide.centerYAnchor),
             avatarView.rightAnchor.constraint(equalTo: contraintGuide.rightAnchor),
             avatarView.widthAnchor.constraint(equalTo: contraintGuide.widthAnchor,
-                                              multiplier: 0.2)
+                                              multiplier: 0.2),
+
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
         ])
     }
 }

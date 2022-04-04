@@ -155,7 +155,9 @@ public final class GBRepositoryListCell: UITableViewCell, GBListCellType {
             avatarView.topAnchor.constraint(equalTo: contraintGuide.topAnchor),
             avatarView.rightAnchor.constraint(equalTo: contraintGuide.rightAnchor),
             avatarView.bottomAnchor.constraint(equalTo: contraintGuide.bottomAnchor),
-            avatarView.widthAnchor.constraint(greaterThanOrEqualToConstant: 120)
+            avatarView.widthAnchor.constraint(greaterThanOrEqualToConstant: 120),
+
+            contentView.heightAnchor.constraint(greaterThanOrEqualToConstant: 100)
         ])
     }
 }

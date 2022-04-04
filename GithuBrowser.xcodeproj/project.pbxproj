@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F204D6EB27FA8841008B54C8 /* GBFlows in Frameworks */ = {isa = PBXBuildFile; productRef = F204D6EA27FA8841008B54C8 /* GBFlows */; };
+		F204D6EE27FB3C4A008B54C8 /* GBAppFlows in Frameworks */ = {isa = PBXBuildFile; productRef = F204D6ED27FB3C4A008B54C8 /* GBAppFlows */; };
 		F298A02D27DCF15300946AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F298A02C27DCF15300946AFA /* Assets.xcassets */; };
 		F298A03027DCF15300946AFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */; };
 		F2FE8EA927E7AA670071718F /* GBVisualComponents in Frameworks */ = {isa = PBXBuildFile; productRef = F2FE8EA827E7AA670071718F /* GBVisualComponents */; };
@@ -38,7 +38,7 @@
 				F2FE8EB527E7D63F0071718F /* XCTest.framework in Frameworks */,
 				F2FE8EA927E7AA670071718F /* GBVisualComponents in Frameworks */,
 				F2FE8EB227E7D31B0071718F /* GBDataFetcher in Frameworks */,
-				F204D6EB27FA8841008B54C8 /* GBFlows in Frameworks */,
+				F204D6EE27FB3C4A008B54C8 /* GBAppFlows in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,7 +112,7 @@
 			packageProductDependencies = (
 				F2FE8EA827E7AA670071718F /* GBVisualComponents */,
 				F2FE8EB127E7D31B0071718F /* GBDataFetcher */,
-				F204D6EA27FA8841008B54C8 /* GBFlows */,
+				F204D6ED27FB3C4A008B54C8 /* GBAppFlows */,
 			);
 			productName = GithuBrowser;
 			productReference = F298A02027DCF14F00946AFA /* GithuBrowser.app */;
@@ -383,9 +383,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		F204D6EA27FA8841008B54C8 /* GBFlows */ = {
+		F204D6ED27FB3C4A008B54C8 /* GBAppFlows */ = {
 			isa = XCSwiftPackageProductDependency;
-			productName = GBFlows;
+			productName = GBAppFlows;
 		};
 		F2FE8EA827E7AA670071718F /* GBVisualComponents */ = {
 			isa = XCSwiftPackageProductDependency;
