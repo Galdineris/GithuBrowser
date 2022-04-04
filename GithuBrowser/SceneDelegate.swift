@@ -6,8 +6,7 @@
 //
 
 import UIKit
-import GBVisualComponents
-import GBDataFetcher
+import GBFlows
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?

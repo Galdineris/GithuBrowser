@@ -8,11 +8,11 @@
 import Foundation
 
 public struct GBRepositoryListCellModel {
-    var title: String
+    public var title: String
     var description: String
     var forks: Int
     var stars: Int
-    var avatarName: String
+    public var avatarName: String
     var avatarImagePath: String?
 
     public init(title: String,

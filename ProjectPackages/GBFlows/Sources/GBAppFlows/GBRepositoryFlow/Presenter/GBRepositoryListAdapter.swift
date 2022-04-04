@@ -7,6 +7,7 @@
 
 import Foundation
 import GBDataFetcher
+import GBVisualComponents
 import UIKit
 
 enum GBRepositoryListAdapter {

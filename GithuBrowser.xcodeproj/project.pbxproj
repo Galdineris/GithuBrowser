@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		F28820F027E92D2F006EFD40 /* GBCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F28820EF27E92D2E006EFD40 /* GBCoordinator.swift */; };
+		F204D6EB27FA8841008B54C8 /* GBFlows in Frameworks */ = {isa = PBXBuildFile; productRef = F204D6EA27FA8841008B54C8 /* GBFlows */; };
 		F298A02D27DCF15300946AFA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F298A02C27DCF15300946AFA /* Assets.xcassets */; };
 		F298A03027DCF15300946AFA /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */; };
 		F2FE8EA927E7AA670071718F /* GBVisualComponents in Frameworks */ = {isa = PBXBuildFile; productRef = F2FE8EA827E7AA670071718F /* GBVisualComponents */; };
@@ -18,7 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		F28820EF27E92D2E006EFD40 /* GBCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GBCoordinator.swift; sourceTree = "<group>"; };
+		F204D6EC27FA8E72008B54C8 /* GBFlows */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = GBFlows; path = ProjectPackages/GBFlows; sourceTree = "<group>"; };
 		F298A02027DCF14F00946AFA /* GithuBrowser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GithuBrowser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F298A02327DCF14F00946AFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F298A02527DCF14F00946AFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -38,6 +38,7 @@
 				F2FE8EB527E7D63F0071718F /* XCTest.framework in Frameworks */,
 				F2FE8EA927E7AA670071718F /* GBVisualComponents in Frameworks */,
 				F2FE8EB227E7D31B0071718F /* GBDataFetcher in Frameworks */,
+				F204D6EB27FA8841008B54C8 /* GBFlows in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -67,7 +68,6 @@
 			children = (
 				F298A02327DCF14F00946AFA /* AppDelegate.swift */,
 				F298A02527DCF14F00946AFA /* SceneDelegate.swift */,
-				F28820EF27E92D2E006EFD40 /* GBCoordinator.swift */,
 				F298A02C27DCF15300946AFA /* Assets.xcassets */,
 				F298A02E27DCF15300946AFA /* LaunchScreen.storyboard */,
 				F298A03127DCF15300946AFA /* Info.plist */,
@@ -88,6 +88,7 @@
 			children = (
 				F2FE8EA527E7AA560071718F /* GBVisualComponents */,
 				F2FE8EB027E7D1FF0071718F /* GBDataFetcher */,
+				F204D6EC27FA8E72008B54C8 /* GBFlows */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -111,6 +112,7 @@
 			packageProductDependencies = (
 				F2FE8EA827E7AA670071718F /* GBVisualComponents */,
 				F2FE8EB127E7D31B0071718F /* GBDataFetcher */,
+				F204D6EA27FA8841008B54C8 /* GBFlows */,
 			);
 			productName = GithuBrowser;
 			productReference = F298A02027DCF14F00946AFA /* GithuBrowser.app */;
@@ -168,7 +170,6 @@
 			files = (
 				F2FE8EAD27E7B27C0071718F /* AppDelegate.swift in Sources */,
 				F2FE8EAE27E7B27C0071718F /* SceneDelegate.swift in Sources */,
-				F28820F027E92D2F006EFD40 /* GBCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -382,6 +383,10 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		F204D6EA27FA8841008B54C8 /* GBFlows */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GBFlows;
+		};
 		F2FE8EA827E7AA670071718F /* GBVisualComponents */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = GBVisualComponents;

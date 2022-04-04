@@ -11,8 +11,7 @@ let package = Package(
             name: "GBDataFetcher",
             targets: ["GBDataFetcher"]),
     ],
-    dependencies: [
-    ],
+    dependencies: [],
     targets: [
         .target(
             name: "GBDataFetcher",

@@ -8,8 +8,8 @@
 import Foundation
 
 public struct GBPullsListModel {
-    var repo: String
-    var username: String
+    public var repo: String
+    public var username: String
 
     public init(repo: String,
                 username: String) {

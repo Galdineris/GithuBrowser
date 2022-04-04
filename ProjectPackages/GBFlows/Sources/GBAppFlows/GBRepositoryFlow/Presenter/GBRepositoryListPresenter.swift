@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import GBDataFetcher
+import GBVisualComponents
 
 public final class GBRepositoryListPresenter {
     public weak var controller: GBListControllerType?

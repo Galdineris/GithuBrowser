@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import GBVisualComponents
 import GBDataFetcher
 import UIKit
 

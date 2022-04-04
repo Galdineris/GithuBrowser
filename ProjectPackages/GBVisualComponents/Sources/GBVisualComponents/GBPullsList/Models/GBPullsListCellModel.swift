@@ -10,7 +10,7 @@ import Foundation
 public struct GBPullsListCellModel {
     var title: String
     var description: String
-    var pullPath: String
+    public var pullPath: String
     var avatarName: String
     var avatarImagePath: String?
 

@@ -2,22 +2,21 @@
 //  GBCoordinator.swift
 //  GithuBrowser
 //
-//  Created by Rafael Galdino on 21/03/22.
+//  Created by Rafael Galdino on 03/04/22.
 //
 
-import Foundation
 import GBVisualComponents
 import UIKit
 import SafariServices
 
-final class GBCoordinator {
+public final class GBCoordinator {
     let navigationController: UINavigationController
 
-    init(navigationController: UINavigationController = UINavigationController()) {
+    public init(navigationController: UINavigationController = UINavigationController()) {
         self.navigationController = navigationController
     }
 
-    func start() {
+    public func start() {
         let controller = createRepositoryList()
         navigationController.viewControllers = [controller]
     }
@@ -48,7 +47,7 @@ final class GBCoordinator {
 }
 
 extension GBCoordinator: GBListPresenterDelegate {
-    func handleSelection(with args: [String : Any]) {
+    public func handleSelection(with args: [String : Any]) {
         if let path = args["path"] as? String {
             openPullRequest(path)
             return
