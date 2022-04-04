@@ -13,8 +13,8 @@ public final class GBPullsListCell: UITableViewCell, GBListCellType {
     public static let reuseIdentifier = "GBPullsListCell"
     weak public var delegate: GBListCellDelegate?
 
-    private let avatarView: GBRepositoryAvatar = {
-        let avatar = GBRepositoryAvatar(orientation: .vertical)
+    private let avatarView: GBImageAvatar = {
+        let avatar = GBImageAvatar(orientation: .vertical)
         avatar.accessibilityIdentifier = "viewAvatar"
         return avatar
     }()
@@ -53,14 +53,10 @@ public final class GBPullsListCell: UITableViewCell, GBListCellType {
 
         delegate?.fetchImage(for: model.avatarImagePath ?? "") { [weak self, model] image in
             DispatchQueue.main.async {
-                self?.avatarView.show(GBAvatarModel(username: model.avatarName, image: image))
+                self?.avatarView.show(GBAvatarModel(username: model.avatarName,
+                                                    image: image))
             }
         }
-    }
-
-    public func updateAvatar(with model: GBAvatarModel) {
-        avatarView.show(model)
-        setNeedsLayout()
     }
 
     public override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

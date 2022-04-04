@@ -13,8 +13,8 @@ public final class GBRepositoryListCell: UITableViewCell, GBListCellType {
     public static let reuseIdentifier = "GBRepositoryListCell"
     weak public var delegate: GBListCellDelegate?
 
-    private let avatarView: GBRepositoryAvatar = {
-        let avatar = GBRepositoryAvatar(orientation: .vertical)
+    private let avatarView: GBImageAvatar = {
+        let avatar = GBImageAvatar(orientation: .vertical)
         avatar.accessibilityIdentifier = "viewAvatar"
         return avatar
     }()

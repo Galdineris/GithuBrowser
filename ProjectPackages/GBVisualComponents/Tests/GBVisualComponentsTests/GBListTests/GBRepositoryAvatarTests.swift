@@ -9,10 +9,10 @@ import XCTest
 @testable import GBVisualComponents
 
 final class GBRepositoryAvatarTests: XCTestCase {
-    var sut: GBRepositoryAvatar!
+    var sut: GBImageAvatar!
 
     override func setUp() {
-        sut = GBRepositoryAvatar()
+        sut = GBImageAvatar()
     }
 
     override func tearDown() {
@@ -28,7 +28,7 @@ final class GBRepositoryAvatarTests: XCTestCase {
     }
 
     func test_init_withHorizontal_shouldSetAxisHorizontal() throws {
-        sut = GBRepositoryAvatar(orientation: .horizontal)
+        sut = GBImageAvatar(orientation: .horizontal)
 
         let stackView = sut.viewWith(accessibilityIdentifier: "stackViewContent") as? UIStackView
         XCTAssertNotNil(stackView)

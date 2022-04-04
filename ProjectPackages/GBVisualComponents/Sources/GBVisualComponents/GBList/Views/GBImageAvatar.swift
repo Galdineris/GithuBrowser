@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class GBRepositoryAvatar: UIView {
+public final class GBImageAvatar: UIView {
     private let orientation: Orientation
     private let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -92,7 +92,7 @@ public final class GBRepositoryAvatar: UIView {
     }
 }
 
-extension GBRepositoryAvatar {
+extension GBImageAvatar {
     public enum Orientation {
         case vertical, horizontal
     }

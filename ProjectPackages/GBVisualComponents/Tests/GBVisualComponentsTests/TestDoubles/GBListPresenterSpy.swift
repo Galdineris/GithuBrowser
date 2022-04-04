@@ -29,7 +29,7 @@ final class GBListPresenterSpy: GBListPresenterType {
 
     private (set) var fetchImageCallCount: Int = 0
     private (set) var fetchImageIndeces: [String] = []
-    private (set) var fetchImageCompletionResult: UIImage? = nil
+    var fetchImageCompletionResult: UIImage? = nil
     func fetchImage(for path: String,
                     completion: @escaping (UIImage?) -> Void) {
         fetchImageCallCount += 1

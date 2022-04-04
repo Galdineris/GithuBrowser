@@ -1,21 +1,21 @@
 //
-//  GBRepositoryListCellTests.swift
+//  GBPullsListCellTests.swift
 //  
 //
-//  Created by Rafael Galdino on 13/03/22.
+//  Created by Rafael Galdino on 04/04/22.
 //
 
 import XCTest
+
 @testable import GBVisualComponents
 
-class GBRepositoryListCellTests: XCTestCase {
-    var sut: GBRepositoryListCell!
+class GBPullsListCellTests: XCTestCase {
+    var sut: GBPullsListCell!
     var delegate: GBListCellDelegateSpy!
 
     override func setUp() {
         delegate = GBListCellDelegateSpy()
-        sut = GBRepositoryListCell(style: .default,
-                                   reuseIdentifier: "")
+        sut = GBPullsListCell(style: .default, reuseIdentifier: "")
         sut.delegate = delegate
     }
 
@@ -33,7 +33,7 @@ class GBRepositoryListCellTests: XCTestCase {
         delegate.fetchImageCompletionResult = .add
 
         sut.show(model)
-
+        
         XCTAssertEqual(delegate.fetchImageCallCount, 1)
         XCTAssertEqual(delegate.fetchImagePath, model.avatarImagePath)
     }
@@ -52,32 +52,20 @@ class GBRepositoryListCellTests: XCTestCase {
         XCTAssertEqual(label.text, model.description)
     }
 
-    func test_show_shouldSetCorrectForkValue() throws {
-        let model = buildFixture()
-        let label = try XCTUnwrap(sut.viewWith(accessibilityIdentifier: "labelForks") as? GBIconLabel)
-        sut.show(model)
-        XCTAssertEqual(label.text, "\(model.forks)")
-    }
-
-    func test_show_shouldSetCorrectStarsValue() throws {
-        let model = buildFixture()
-        let label = try XCTUnwrap(sut.viewWith(accessibilityIdentifier: "labelStars") as? GBIconLabel)
-        sut.show(model)
-        XCTAssertEqual(label.text, "\(model.stars)")
-    }
-
     func test_prepareForReuse_shouldCallPrepareForReuse() throws {
         sut.prepareForReuse()
         XCTAssertEqual(delegate.prepareForReuseCallCount, 1)
     }
 
-    private func buildFixture() -> GBRepositoryListCellModel {
-        let avatar = GBAvatarModel(username: "username")
-        return GBRepositoryListCellModel(title: "title",
-                                         description: "description",
-                                         forks: 10,
-                                         stars: 10,
-                                         avatarName: "avatarName",
-                                         avatarImagePath: "avatarImagePath")
+    private func buildFixture(title: String = "title",
+                              description: String = "description",
+                              pullPath: String = "pullPath",
+                              avatarName: String = "avatarName",
+                              avatarImagePath: String = "avatarImagePath") -> GBPullsListCellModel {
+        return GBPullsListCellModel(title: title,
+                                    description: description,
+                                    pullPath: pullPath,
+                                    avatarName: avatarName,
+                                    avatarImagePath: avatarImagePath)
     }
 }

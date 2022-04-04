@@ -6,7 +6,8 @@
 //
 
 import XCTest
-import GBVisualComponents
+
+@testable import GBVisualComponents
 
 class GBListControllerTests: XCTestCase {
     var sut: GBListController<GBListCellMock>!
