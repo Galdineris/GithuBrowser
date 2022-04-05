@@ -30,9 +30,15 @@ final class GBCoordinatorTests: XCTestCase {
         XCTAssertNotNil( navigationController.viewControllers.popLast() as? GBListController<GBPullsListCell>)
     }
 
-    func test_start_withWebPage_shouldShowSafariServices() throws {
+    func test_start_withWebPage_shouldShowSafariController() throws {
         let path = "https://www.example.com"
         sut.start(with: .webPage(path: path))
         XCTAssertNotNil( navigationController.viewControllers.popLast() as? SFSafariViewController)
+    }
+
+    func test_handleSelection_withPullListArgs_shouldShowListController() throws {
+        sut.handleSelection(with: ["repo": "repo", "username":"username"])
+
+        XCTAssertNotNil( navigationController.viewControllers.popLast() as? GBListController<GBPullsListCell>)
     }
 }
