@@ -1,11 +1,38 @@
 import XCTest
-@testable import GBFlows
+import GBVisualComponents
+@testable import GBAppFlows
+import SafariServices
 
-final class GBFlowsTests: XCTestCase {
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(GBFlows().text, "Hello, World!")
+final class GBCoordinatorTests: XCTestCase {
+    var sut: GBCoordinator!
+    var navigationController: UINavigationController!
+
+    override func setUp() {
+        navigationController = UINavigationController()
+        sut = GBCoordinator(navigationController: navigationController)
+    }
+
+    override func tearDown() {
+        sut = nil
+        navigationController = nil
+    }
+
+    func test_start_withRepositoryFlow_shouldShowListController() throws {
+        sut.start(with: .repositories)
+        XCTAssertNotNil( navigationController.viewControllers.popLast() as? GBListController<GBRepositoryListCell>)
+    }
+
+    func test_start_withPullsFlow_shouldShowListController() throws {
+        let repo = "repo"
+        let username = "username"
+        sut.start(with: .pulls(repo: repo,
+                               username: username))
+        XCTAssertNotNil( navigationController.viewControllers.popLast() as? GBListController<GBPullsListCell>)
+    }
+
+    func test_start_withWebPage_shouldShowSafariServices() throws {
+        let path = "https://www.example.com"
+        sut.start(with: .webPage(path: path))
+        XCTAssertNotNil( navigationController.viewControllers.popLast() as? SFSafariViewController)
     }
 }

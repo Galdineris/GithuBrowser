@@ -67,7 +67,10 @@ public final class GBCoordinator {
     }
 
     private func createWebPageController(_ path: String) -> SFSafariViewController? {
-        guard let url = URL(string: path) else { return nil }
+        guard let url = URL(string: path) else {
+//            TODO: Error Handling
+            return nil
+        }
         let controller = SFSafariViewController(url: url)
         controller.modalPresentationStyle = .pageSheet
         return controller
@@ -82,7 +85,7 @@ extension GBCoordinator: GBListPresenterDelegate {
         case let .webPage(path):
             openPullRequest(path)
         default:
-//            handle error
+//            TODO: Error Handling
             return
         }
     }
@@ -93,7 +96,10 @@ extension GBCoordinator: GBListPresenterDelegate {
     }
 
     private func openPullRequest(_ path: String) {
-        guard let controller = createWebPageController(path) else { return }
+        guard let controller = createWebPageController(path) else {
+//            TODO: Error Handling
+            return
+        }
         navigationController.present(controller, animated: true)
     }
 }

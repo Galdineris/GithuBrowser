@@ -39,6 +39,7 @@ extension GBRepositoryListPresenter: GBListPresenterType {
 
     public func fetchData() {
         guard currentPage > 0, isNotFetching else {
+//            TODO: Error Handling
             return
         }
         isNotFetching = false
@@ -62,7 +63,10 @@ extension GBRepositoryListPresenter: GBListPresenterType {
     public func selectCellAt(index: Int) {
         guard index < cells.count,
               let pullsModel = cells[index] as? GBRepositoryListCellModel
-        else { return }
+        else {
+//            TODO: Error Handling
+            return
+        }
         delegate?.handleSelection(with: ["repo": pullsModel.title,
                                          "username": pullsModel.avatarName])
     }

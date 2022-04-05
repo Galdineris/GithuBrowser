@@ -44,6 +44,7 @@ extension GBPullsListPresenter: GBListPresenterType {
 
     public func fetchData() {
         guard currentPage > 0, isNotFetching else {
+//            TODO: Error Handling
             return
         }
         isNotFetching = false
@@ -58,6 +59,7 @@ extension GBPullsListPresenter: GBListPresenterType {
                     DispatchQueue.main.async {
                         self?.controller?.setLoading(to: false)
                     }
+//            TODO: Error Handling
                     return
                 }
                 self?.cells.append(contentsOf: GBPullsListAdapter.adapt(pulls))
@@ -76,7 +78,10 @@ extension GBPullsListPresenter: GBListPresenterType {
     public func selectCellAt(index: Int) {
         guard index < cells.count,
               let pullModel = cells[index] as? GBPullsListCellModel
-        else { return }
+        else {
+//            TODO: Error Handling
+            return
+        }
         delegate?.handleSelection(with: ["path": pullModel.pullPath])
     }
 }
