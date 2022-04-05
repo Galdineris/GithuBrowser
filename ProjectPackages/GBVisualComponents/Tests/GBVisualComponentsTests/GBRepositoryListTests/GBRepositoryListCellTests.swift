@@ -72,7 +72,6 @@ class GBRepositoryListCellTests: XCTestCase {
     }
 
     private func buildFixture() -> GBRepositoryListCellModel {
-        let avatar = GBAvatarModel(username: "username")
         return GBRepositoryListCellModel(title: "title",
                                          description: "description",
                                          forks: 10,

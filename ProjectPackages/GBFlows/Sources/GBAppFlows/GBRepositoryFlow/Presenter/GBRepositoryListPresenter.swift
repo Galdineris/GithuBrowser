@@ -52,7 +52,7 @@ extension GBRepositoryListPresenter: GBListPresenterType {
                 DispatchQueue.main.async {
                     self?.controller?.reloadData()
                 }
-            case .failure(let _):
+            case .failure:
                 // TODO: Error Handling
                 return
             }
