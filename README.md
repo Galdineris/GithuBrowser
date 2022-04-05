@@ -2,8 +2,6 @@
 
 GithuBrowser é uma pequena prova de conceito de utilização das APIs de busca do Github para navegar por repositórios. Este projeto está configurado para acessar os repositórios mais populares (de acordo com o número de stars) utilizando a linguagem de programação Swift.
 
-Aviso: A implementação deste projeto encontra-se incompleta e portanto é possível a presença de falhas e comportamentos anomalos.
-
 ## Instalação
 * Necessário: XCode 13
 Este projeto não utiliza nenhuma biblioteca de terceiros. Para rodar este projeto, simplesmente clone o repositório e execute o projeto utilizando a versão mais recente, se possível, do XCode. 
@@ -22,10 +20,9 @@ Responsável por conter as classes e componentes visuais criados para o projeto.
 Este projeto utiliza uma arquitetura baseada no Model View Presenter (MVP) com a inclusão de Coordinators para navegação e controle de fluxo.
 Com o intuito de facilitar o reuso e manutenção do código, utilizou-se módulos para segregar camadas do projeto. O uso de programação orientada a protocolos também foi feita, a fim de facilitar a leitura e aumentar a testabilidade do código.
 ### Débitos técnicos
-Devidos a imprevistos pessoais, este projeto desviou de suas definições arquiteturais, gerando uma dissonancia entre o planejamento realizado e a implementação atual.
-A cobertura de testes se encontra abaixo do mínimo viavel e algumas classes apresentam uma arquitetura que dificulta a testabilidade.
-Além disso, foi gerada uma dependencia do módulo de componentes (GBVisualComponents) com o módulo de chamadas de rede (GBDataFetcher), algo que a arquitetura original visava impedir para que ambos fossem o mais facilmente reutilizaveis e para que o projeto fosse mais performático.
-Aliado a tudo isso, o gerenciamento de erros não foi implementado, gerando uma má experiencia e diminuindo a qualidade do projeto.
+A cobertura de testes se encontra abaixo do desejado, em especial na biblioteca GBDataFetcher e na GBAppFlows.
+Algumas funcionalidades como o gerenciamento de falhas no decorrer de fluxos e estados de erro ainda se encontram pendentes. 
+Por fim, o projeto inicia diretamente na tela da lista de repositórios Swift e seria desejesavel uma tela de inicio antes para melhor faciltiar a experiencia e os testes, além de possibilitar a configuração da chamada da tela de repositórios. 
 
 ## Créditos
 Este projeto utiliza elementos visuais cirados por terceiros sob licença aberta.
